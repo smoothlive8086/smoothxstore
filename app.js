@@ -3,7 +3,7 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-    // --- KeyAuth Integration ---
+    // --- KeyAuth Integration for Admin Panel ---
     class KeyAuth {
         constructor({ name, ownerid, secret, version }) {
             this.name = name;
@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         async postKeyAuth(postDataObj) {
-            // 1. Try serverless proxy (/api/db) first
+            // 1. Try serverless proxy (/api/db) first to avoid CORS limits
             try {
                 const apiRes = await fetch('/api/db', {
                     method: 'POST',
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Fallback to direct fetch
             }
 
-            // 2. Direct browser fetch
+            // 2. Direct browser fetch fallback
             const postParams = new URLSearchParams(postDataObj);
             try {
                 const res = await fetch('https://keyauth.win/api/1.2/', {
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 return await res.json();
             } catch (directErr) {
-                // 3. Allorigins CORS proxy fallback
+                // 3. CORS Proxy Fallback
                 try {
                     const corsRes = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://keyauth.win/api/1.2/'), {
                         method: 'POST',
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!this.sessionid) {
                 const initRes = await this.init();
                 if (!initRes.success && !initRes.message?.toLowerCase().includes('already')) {
-                    // Continue to attempt login or proxy
+                    // Continue to login attempt
                 }
             }
 
@@ -118,41 +118,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 return { success: false, message: data.message || "Invalid KeyAuth Username or Password!" };
             }
         }
-
-        async checkKey(licenseKey) {
-            if (!this.sessionid) {
-                const initRes = await this.init();
-                if (!initRes.success) return initRes;
-            }
-
-            const data = await this.postKeyAuth({
-                type: 'license',
-                key: licenseKey,
-                sessionid: this.sessionid,
-                name: this.name,
-                ownerid: this.ownerid,
-                hwid: this.getHWID()
-            });
-
-            if (data.success) {
-                return { success: true, message: data.message || "Key verified successfully!", info: data.info };
-            } else {
-                if (data.message && data.message.toLowerCase().includes('session')) {
-                    this.sessionid = "";
-                    const retryInit = await this.init();
-                    if (retryInit.success) {
-                        return this.checkKey(licenseKey);
-                    }
-                }
-                return { success: false, message: data.message || "Invalid or expired KeyAuth License Key!" };
-            }
-        }
     }
 
     const keyAuthApp = new KeyAuth({
-        name: "Smoothlive8086's Application",
-        ownerid: "S1Qp6fDIgo",
-        secret: "6132d16a79c00aedb747efb145ffcbf2f729adbb4dbb0c33088cce80ee89a3e0",
+        name: "Smoothlive380's Application",
+        ownerid: "V1cJiIajaO",
+        secret: "87fb1ba1ebd3baccb5354c843b3d9aa249f13d6062d4baf352bbdd69fb0391fc",
         version: "1.0"
     });
 
@@ -1173,27 +1144,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- Modal Control Helpers ---
-    function openModal(modal) { if (modal) modal.classList.remove('hidden'); }
-    function closeModal(modal) { if (modal) modal.classList.add('hidden'); }
-
-    if (openAuthBtn) openAuthBtn.addEventListener('click', () => openModal(authModal));
-    if (heroAuthTrigger) {
-        heroAuthTrigger.addEventListener('click', () => {
-            const currentUser = getCurrentUser();
-            if (currentUser) {
-                document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
-            } else {
-                openModal(authModal);
-            }
+    if (keyauthForm) {
+        keyauthForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('keyauth-username').value;
+            const password = document.getElementById('keyauth-password').value;
+            handleKeyAuthAdminLogin(username, password, keyauthForm);
         });
     }
-    if (closeAuthModal) closeAuthModal.addEventListener('click', () => closeModal(authModal));
-    if (closePaymentModal) closePaymentModal.addEventListener('click', () => closeModal(paymentModal));
-    if (closeImageViewer) closeImageViewer.addEventListener('click', () => closeModal(imageViewerModal));
-    if (closeCompletionModal) closeCompletionModal.addEventListener('click', () => closeModal(orderCompletionModal));
 
-    // Shared Auth Logic Helper
+    // --- Shared KeyAuth Admin Login Handler ---
     async function handleKeyAuthAdminLogin(username, password, formElement) {
         const u = (username || '').trim();
         const p = (password || '').trim();
@@ -1202,7 +1162,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Master Admin Credentials Check
+        // Master Admin Credentials Check Fallback
         if ((u.toLowerCase() === 'admin' || u.toLowerCase() === 'smooth') && (p === 'smooth8086' || p === 'admin8086')) {
             const adminUser = {
                 email: `KeyAuth: ${u}`,
@@ -1236,7 +1196,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (formElement) formElement.reset();
             closeModal(authModal);
             updateAuthUI();
-            showToast(`KeyAuth User '${u}' Verified! Admin Panel Unlocked.`, 'success');
+            showToast(`KeyAuth User '${u}' Verified! Executive Admin Panel Unlocked.`, 'success');
         } else {
             if (result.message && (result.message.toLowerCase().includes('network') || result.message.toLowerCase().includes('fetch'))) {
                 const adminUser = {
@@ -1264,29 +1224,68 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (keyauthForm) {
-        keyauthForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const username = document.getElementById('keyauth-username').value;
-            const password = document.getElementById('keyauth-password').value;
-            handleKeyAuthAdminLogin(username, password, keyauthForm);
+    // --- Modal Control Helpers ---
+    function openModal(modal) { if (modal) modal.classList.remove('hidden'); }
+    function closeModal(modal) { if (modal) modal.classList.add('hidden'); }
+
+    if (openAuthBtn) openAuthBtn.addEventListener('click', () => openModal(authModal));
+    if (heroAuthTrigger) {
+        heroAuthTrigger.addEventListener('click', () => {
+            const currentUser = getCurrentUser();
+            if (currentUser) {
+                document.getElementById('plans').scrollIntoView({ behavior: 'smooth' });
+            } else {
+                openModal(authModal);
+            }
         });
     }
+    if (closeAuthModal) closeAuthModal.addEventListener('click', () => closeModal(authModal));
+    if (closePaymentModal) closePaymentModal.addEventListener('click', () => closeModal(paymentModal));
+    if (closeImageViewer) closeImageViewer.addEventListener('click', () => closeModal(imageViewerModal));
+    if (closeCompletionModal) closeCompletionModal.addEventListener('click', () => closeModal(orderCompletionModal));
 
     function handleUserSignin(email, password, formElement) {
+        const em = (email || '').trim().toLowerCase();
+        const pw = (password || '').trim();
+
+        if (!em || !pw) {
+            showToast('Please enter your email/username and password.', 'error');
+            return;
+        }
+
+        // Direct Admin Login Verification
+        if ((em === 'admin' || em === 'smooth' || em.startsWith('admin@') || em === 'keyauth') && (pw === 'smooth8086' || pw === 'admin8086' || pw === 'admin' || pw === '1')) {
+            const adminUser = {
+                email: em.includes('@') ? em : `admin@smoothstore.com`,
+                isAdmin: true,
+                keyAuthUser: em,
+                authenticatedAt: new Date().toISOString()
+            };
+            setCurrentUser(adminUser);
+            isAdminLoggedIn = true;
+            recordLoginEvent(adminUser.email, 'Super Admin', 'Success');
+            if (formElement) formElement.reset();
+            closeModal(authModal);
+            updateAuthUI();
+            showToast(`Admin Authenticated! Executive Admin Panel Unlocked.`, 'success');
+            return;
+        }
+
         const users = getStoredUsers();
-        const foundUser = users.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === password);
+        const foundUser = users.find(u => u.email.toLowerCase() === em && u.password === pw);
 
         if (foundUser) {
-            setCurrentUser({ email: foundUser.email });
-            recordLoginEvent(foundUser.email, 'Customer', 'Success');
+            const isUserAdmin = foundUser.isAdmin === true;
+            const userObj = { email: foundUser.email, isAdmin: isUserAdmin };
+            setCurrentUser(userObj);
+            recordLoginEvent(foundUser.email, isUserAdmin ? 'Super Admin' : 'Customer', 'Success');
             if (formElement) formElement.reset();
             closeModal(authModal);
             updateAuthUI();
             showToast(`Welcome back, ${foundUser.email}! Access unlocked.`, 'success');
         } else {
             recordLoginEvent(email, 'Customer', 'Failed');
-            showToast('Invalid Gmail ID or Password. Please check your credentials.', 'error');
+            showToast('Invalid Gmail ID/Username or Password. Please check your credentials.', 'error');
         }
     }
 
@@ -3222,23 +3221,31 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     document.addEventListener('keydown', (e) => {
-        // Secret Shortcut to Unlock Admin KeyAuth Login: Ctrl + Shift + M
-        if ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'M' || e.key === 'm' || e.keyCode === 77)) {
+        // Secret Shortcut to Reveal & Open Admin KeyAuth Login Page: Alt + Shift + M
+        if (e.altKey && e.shiftKey && (e.key === 'M' || e.key === 'm' || e.keyCode === 77)) {
             e.preventDefault();
 
             const gateKeyauthBtn = document.getElementById('gate-tab-keyauth-btn');
             const tabKeyauthBtn = document.getElementById('tab-keyauth-btn');
+            const authModal = document.getElementById('auth-modal');
+            const welcomeAuthScreen = document.getElementById('welcome-auth-screen');
 
             if (gateKeyauthBtn) {
                 gateKeyauthBtn.classList.remove('hidden');
-                gateKeyauthBtn.click();
             }
             if (tabKeyauthBtn) {
                 tabKeyauthBtn.classList.remove('hidden');
-                tabKeyauthBtn.click();
             }
 
-            showToast('Admin KeyAuth login portal unlocked!', 'success');
+            // If welcome gate screen is visible, click welcome gate keyauth tab
+            if (welcomeAuthScreen && !welcomeAuthScreen.classList.contains('hidden')) {
+                if (gateKeyauthBtn) gateKeyauthBtn.click();
+            } else {
+                if (authModal) authModal.classList.remove('hidden');
+                if (tabKeyauthBtn) tabKeyauthBtn.click();
+            }
+
+            showToast('Admin KeyAuth Login Portal Unlocked!', 'success');
             return false;
         }
 
