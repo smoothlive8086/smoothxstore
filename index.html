@@ -1,0 +1,1306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMOOTH X STORE | Ultimate Performance & Digital Services</title>
+    <meta name="description" content="Unlock maximum performance, digital services, and premium subscriptions with SMOOTH X STORE.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@600;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Dynamic Notification Toast -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-bolt-lightning logo-icon" id="brand-logo-icon"></i>
+                <span class="logo-text" id="brand-logo-text">SMOOTH <span class="accent-text">X</span> STORE</span>
+            </div>
+            <nav class="nav-links hidden" id="main-nav-links">
+                <button id="nav-top-options-btn" class="nav-link-btn"><i class="fa-solid fa-border-all"></i> Main Options</button>
+                <button id="nav-categories-btn" class="nav-link-btn hidden"><i class="fa-solid fa-sliders"></i> Opt & Sensi</button>
+                <button id="nav-sensi-options-btn" class="nav-link-btn hidden"><i class="fa-solid fa-crosshairs"></i> Sensi Platforms</button>
+                <button id="nav-other-purchases-btn" class="nav-link-btn hidden"><i class="fa-solid fa-bag-shopping"></i> Other Purchases</button>
+                <a href="#plans" class="nav-link" id="nav-plans-link">Plans</a>
+                <a href="https://www.instagram.com/_tl_smooth_777_?igsh=emlmdmJud3VpcGZl" target="_blank" rel="noopener noreferrer" class="nav-link instagram-nav-link"><i class="fa-brands fa-instagram"></i> Instagram</a>
+            </nav>
+            <div class="auth-status-container">
+                <div id="user-profile-badge" class="user-badge hidden">
+                    <button id="nav-admin-dashboard-btn" class="btn btn-sm btn-secondary hidden"><i class="fa-solid fa-shield-halved"></i> Admin Panel</button>
+                    <span id="user-badge-email" class="user-email-text">user@gmail.com</span>
+                    <button id="logout-btn" class="btn btn-sm btn-outline"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+                </div>
+                <button id="open-auth-btn" class="btn btn-primary nav-btn"><i class="fa-solid fa-right-to-bracket"></i> Sign In / Register</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main>
+        <!-- First Landing Screen: Login Gate (Shown when unauthenticated) -->
+        <section id="welcome-auth-screen" class="welcome-auth-screen">
+            <div class="welcome-glow bg-glow-1"></div>
+            <div class="welcome-glow bg-glow-2"></div>
+            <div class="welcome-card glass-card">
+                <div class="welcome-header">
+                    <div class="logo logo-center">
+                        <i class="fa-solid fa-bolt-lightning logo-icon" id="gate-logo-icon"></i>
+                        <span class="logo-text" id="gate-logo-text">SMOOTH <span class="accent-text">X</span> STORE</span>
+                    </div>
+                    <p class="welcome-subtitle">Sign in or create an account with your Gmail ID to access PC optimization packages.</p>
+                </div>
+
+                <div class="auth-tabs">
+                    <button id="gate-tab-signin-btn" class="auth-tab active">Sign In</button>
+                    <button id="gate-tab-signup-btn" class="auth-tab">Register Account</button>
+                    <button id="gate-tab-keyauth-btn" class="auth-tab keyauth-tab hidden"><i class="fa-solid fa-key"></i> Admin KeyAuth</button>
+                </div>
+
+                <!-- Sign In Form -->
+                <form id="gate-signin-form" class="auth-form">
+                    <div class="form-group">
+                        <label for="gate-signin-email"><i class="fa-solid fa-envelope"></i> Gmail ID</label>
+                        <input type="email" id="gate-signin-email" placeholder="yourgmail@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gate-signin-password"><i class="fa-solid fa-lock"></i> Password</label>
+                        <input type="password" id="gate-signin-password" placeholder="Enter your password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block btn-lg pulse-glow"><i class="fa-solid fa-right-to-bracket"></i> Sign In to Access Website</button>
+                </form>
+
+                <!-- Sign Up Form -->
+                <form id="gate-signup-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label for="gate-signup-email"><i class="fa-solid fa-envelope"></i> Gmail ID</label>
+                        <input type="email" id="gate-signup-email" placeholder="yourgmail@gmail.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gate-signup-password"><i class="fa-solid fa-lock"></i> Create Password</label>
+                        <input type="password" id="gate-signup-password" placeholder="Create a strong password" required minlength="4">
+                    </div>
+                    <div class="form-group">
+                        <label for="gate-signup-confirm-password"><i class="fa-solid fa-lock"></i> Confirm Password</label>
+                        <input type="password" id="gate-signup-confirm-password" placeholder="Re-enter password" required>
+                    </div>
+                    <button type="submit" class="btn btn-glow btn-block btn-lg"><i class="fa-solid fa-user-plus"></i> Complete Registration & Enter</button>
+                </form>
+
+                <!-- KeyAuth Admin Form -->
+                <form id="gate-keyauth-form" class="auth-form hidden">
+                    <div class="form-group">
+                        <label for="gate-keyauth-username"><i class="fa-solid fa-user-shield"></i> KeyAuth Username</label>
+                        <input type="text" id="gate-keyauth-username" placeholder="Enter KeyAuth Username" required autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label for="gate-keyauth-password"><i class="fa-solid fa-lock"></i> KeyAuth Password</label>
+                        <input type="password" id="gate-keyauth-password" placeholder="Enter KeyAuth Password" required autocomplete="current-password">
+                    </div>
+                    <button type="submit" class="btn btn-secondary btn-block btn-lg pulse-glow"><i class="fa-solid fa-shield-cat"></i> Verify KeyAuth & Access Admin</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Post-Login Top Options Hub (Shows 2 Small Options: OPTIMIZATION & SENSI and OTHER PURCHASES) -->
+        <section id="top-options-screen" class="top-options-screen hidden">
+            <div class="container">
+                <div class="section-header text-center">
+                    <span class="section-tagline"><i class="fa-solid fa-layer-group"></i> MAIN SERVICE CATEGORIES</span>
+                    <h2 class="section-title">SELECT YOUR SERVICE CATEGORY</h2>
+                    <p class="section-description">Choose OPTIMIZATION & SENSI for performance packages, or OTHER PURCHASES for digital services.</p>
+                </div>
+                
+                <div class="top-options-grid">
+                    <!-- Option 1: OPTIMIZATION & SENSI (Small Size Card) -->
+                    <div class="top-option-card glass-card" id="card-top-opt-sensi">
+                        <div class="top-opt-icon-wrapper">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="top-opt-badge">OPTION 1</span>
+                        <h3 class="top-opt-title">OPTIMIZATION & SENSI</h3>
+                        <p class="top-opt-desc">PC performance boost, FPS tuning & device aim sensitivity profiles.</p>
+                        <button class="btn btn-primary select-top-opt-btn top-opt-btn" data-top="opt_sensi">
+                            <i class="fa-solid fa-sliders"></i> Go to OPTIMIZATION & SENSI
+                        </button>
+                    </div>
+
+                    <!-- Option 2: OTHER PURCHASES (Small Size Card) -->
+                    <div class="top-option-card glass-card purple-glow" id="card-top-other-purchases">
+                        <div class="top-opt-icon-wrapper purple">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                        </div>
+                        <span class="top-opt-badge">OPTION 2</span>
+                        <h3 class="top-opt-title">OTHER PURCHASES</h3>
+                        <p class="top-opt-desc">Discord VIP ticket perks, Nitro boosts & premium OTT platform subscriptions.</p>
+                        <button class="btn btn-glow select-top-opt-btn top-opt-btn" data-top="other_purchases">
+                            <i class="fa-solid fa-cart-shopping"></i> Go to OTHER PURCHASES
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Post-Login Category Selection Hub (Shows OPTIMIZATION & SENSI) -->
+        <section id="category-selection-screen" class="category-selection-screen hidden">
+            <div class="container">
+                <div class="subnav-bar">
+                    <button id="category-back-to-top-btn" class="btn btn-outline btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Main Options
+                    </button>
+                </div>
+                <div class="section-header text-center">
+                    <span class="section-tagline"><i class="fa-solid fa-bolt-lightning"></i> SELECT SERVICE CATEGORY</span>
+                    <h2 class="section-title">CHOOSE YOUR PERFORMANCE PACKAGE</h2>
+                    <p class="section-description">Select OPTIMIZATION for PC system tuning or SENSI for device aim & sensitivity profiles.</p>
+                </div>
+                
+                <div class="category-grid">
+                    <!-- OPTIMIZATION Option Card -->
+                    <div class="category-card glass-card" id="card-select-optimization">
+                        <div class="cat-image-preview-box cyan">
+                            <img src="https://cdn.phototourl.com/free/2026-08-02-ded94d0e-216e-4205-8042-11526fcb6646.jpg" alt="OPTIMIZATION" class="cat-preview-img">
+                            <div class="cat-img-overlay"></div>
+                        </div>
+                        <div class="cat-content-wrapper">
+                            <div class="cat-header-row">
+                                <div class="cat-icon-wrapper cyan">
+                                    <i class="fa-solid fa-gauge-high"></i>
+                                </div>
+                                <div class="cat-title-meta">
+                                    <div class="cat-badge">OPTION 1</div>
+                                    <h3 class="cat-title">OPTIMIZATION</h3>
+                                </div>
+                            </div>
+                            <p class="cat-description">Full Windows PC Optimization, zero input delay, FPS boost, registry tuning & custom driver tweaks.</p>
+                            <ul class="cat-highlights">
+                                <li><i class="fa-solid fa-check text-cyan"></i> Maximum FPS & Low System Latency</li>
+                                <li><i class="fa-solid fa-check text-cyan"></i> Windows Bloatware & Telemetry Purge</li>
+                                <li><i class="fa-solid fa-check text-cyan"></i> Custom High Performance Power Plans</li>
+                            </ul>
+                            <button class="btn btn-primary btn-block btn-lg select-cat-btn" data-category="optimization">
+                                <i class="fa-solid fa-sliders"></i> Go to OPTIMIZATION
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- SENSI Option Card -->
+                    <div class="category-card glass-card" id="card-select-sensi">
+                        <div class="cat-image-preview-box pink">
+                            <img src="https://cdn.phototourl.com/free/2026-08-02-fe79f73e-0ff2-4d04-a9f8-f3bd518c9431.jpg" alt="AIMBOT SENSI" class="cat-preview-img">
+                            <div class="cat-img-overlay"></div>
+                        </div>
+                        <div class="cat-content-wrapper">
+                            <div class="cat-header-row">
+                                <div class="cat-icon-wrapper pink">
+                                    <i class="fa-solid fa-crosshairs"></i>
+                                </div>
+                                <div class="cat-title-meta">
+                                    <div class="cat-badge">OPTION 2</div>
+                                    <h3 class="cat-title">SENSI</h3>
+                                </div>
+                            </div>
+                            <p class="cat-description">Pro sensitivity settings & touch delay removal for PC, iOS, and Android gaming devices.</p>
+                            <ul class="cat-highlights">
+                                <li><i class="fa-solid fa-check text-pink"></i> PC SENSI (Mouse & Raw Input Tuning)</li>
+                                <li><i class="fa-solid fa-check text-pink"></i> IOS SENSI (iPhone & iPad Touch Response)</li>
+                                <li><i class="fa-solid fa-check text-pink"></i> ANDROID SENSI (Touch Speed & DPI Tweaks)</li>
+                            </ul>
+                            <button class="btn btn-glow btn-block btn-lg select-cat-btn" data-category="sensi">
+                                <i class="fa-solid fa-crosshairs"></i> Go to SENSI Options
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SENSI Sub-Category Selection Screen (Shows PC SENSI, IOS SENSI, ANDROID SENSI) -->
+        <section id="sensi-selection-screen" class="sensi-selection-screen hidden">
+            <div class="container">
+                <div class="subnav-bar">
+                    <button id="sensi-back-to-cat-btn" class="btn btn-outline btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Category Options
+                    </button>
+                </div>
+                <div class="section-header text-center">
+                    <span class="section-tagline"><i class="fa-solid fa-crosshairs"></i> SENSI PLATFORMS</span>
+                    <h2 class="section-title">CHOOSE YOUR SENSI DEVICE</h2>
+                    <p class="section-description">Select your gaming platform to access specialized sensitivity profiles & touch tuning.</p>
+                </div>
+
+                <div class="sensi-grid">
+                    <!-- Option 1: PC SENSI -->
+                    <div class="sensi-card glass-card" id="card-select-pc-sensi">
+                        <div class="sensi-icon-box cyan">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <span class="sensi-opt-number">OPTION 1</span>
+                        <h3 class="sensi-title">PC SENSI</h3>
+                        <p class="sensi-desc">High precision mouse sensitivity, DPI sync, raw input acceleration removal & aim presets for PC.</p>
+                        <button class="btn btn-primary btn-block select-sensi-btn" data-sensi="pc">
+                            <i class="fa-solid fa-desktop"></i> Open PC SENSI
+                        </button>
+                    </div>
+
+                    <!-- Option 2: IOS SENSI -->
+                    <div class="sensi-card glass-card" id="card-select-ios-sensi">
+                        <div class="sensi-icon-box pink">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <span class="sensi-opt-number">OPTION 2</span>
+                        <h3 class="sensi-title">IOS SENSI</h3>
+                        <p class="sensi-desc">Smooth touch response, 3D touch tuning, gyroscope calibration & headshot sensi for iPhone / iPad.</p>
+                        <button class="btn btn-glow btn-block select-sensi-btn" data-sensi="ios">
+                            <i class="fa-solid fa-mobile-screen-button"></i> Open IOS SENSI
+                        </button>
+                    </div>
+
+                    <!-- Option 3: ANDROID SENSI -->
+                    <div class="sensi-card glass-card" id="card-select-android-sensi">
+                        <div class="sensi-icon-box gold">
+                            <i class="fa-brands fa-android"></i>
+                        </div>
+                        <span class="sensi-opt-number">OPTION 3</span>
+                        <h3 class="sensi-title">ANDROID SENSI</h3>
+                        <p class="sensi-desc">Zero touch delay, custom DPI & pointer speed settings, Game Turbo sensi profiles for Android.</p>
+                        <button class="btn btn-primary btn-block select-sensi-btn" data-sensi="android">
+                            <i class="fa-brands fa-android"></i> Open ANDROID SENSI
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OTHER PURCHASES Selection Screen (Shows 3 Options: DISCORD, SPOTIFY, NETFLIX) -->
+        <section id="other-purchases-selection-screen" class="other-purchases-selection-screen hidden">
+            <div class="container">
+                <div class="subnav-bar">
+                    <button id="other-back-to-top-btn" class="btn btn-outline btn-sm">
+                        <i class="fa-solid fa-arrow-left"></i> Back to Main Options
+                    </button>
+                </div>
+                <div class="section-header text-center">
+                    <span class="section-tagline"><i class="fa-solid fa-bag-shopping"></i> DIGITAL SERVICES & SUBSCRIPTIONS</span>
+                    <h2 class="section-title">CHOOSE OTHER PURCHASES</h2>
+                    <p class="section-description">Select DISCORD for VIP ticket support & perks, SPOTIFY for ad-free music, or NETFLIX for 4K streaming passes.</p>
+                </div>
+
+                <div class="other-grid">
+                    <!-- Option 1: DISCORD -->
+                    <div class="other-card glass-card" id="card-select-discord">
+                        <div class="top-opt-icon-wrapper discord-icon">
+                            <i class="fa-brands fa-discord"></i>
+                        </div>
+                        <span class="top-opt-badge">OPTION 1</span>
+                        <h3 class="top-opt-title">DISCORD</h3>
+                        <p class="top-opt-desc">Discord Nitro 1 Month & 3 Months activation promo codes with server boosts.</p>
+                        <button class="btn btn-primary btn-block select-other-sub-btn" data-other="discord">
+                            <i class="fa-brands fa-discord"></i> Open DISCORD Options
+                        </button>
+                    </div>
+
+                    <!-- Option 2: SPOTIFY -->
+                    <div class="other-card glass-card spotify-card" id="card-select-spotify">
+                        <div class="top-opt-icon-wrapper spotify-icon">
+                            <i class="fa-brands fa-spotify"></i>
+                        </div>
+                        <span class="top-opt-badge">OPTION 2</span>
+                        <h3 class="top-opt-title">SPOTIFY</h3>
+                        <p class="top-opt-desc">Spotify Premium subscriptions, ad-free music, offline downloads & 320kbps audio.</p>
+                        <button class="btn btn-glow btn-block select-other-sub-btn" data-other="spotify">
+                            <i class="fa-brands fa-spotify"></i> Open SPOTIFY Options
+                        </button>
+                    </div>
+
+                    <!-- Option 3: NETFLIX -->
+                    <div class="other-card glass-card netflix-card" id="card-select-netflix">
+                        <div class="top-opt-icon-wrapper netflix-icon">
+                            <img src="https://cdn.phototourl.com/free/2026-08-03-4689ac80-da22-468e-b8d0-35793e270935.webp" alt="Netflix" class="cat-custom-icon-img">
+                        </div>
+                        <span class="top-opt-badge">OPTION 3</span>
+                        <h3 class="top-opt-title">NETFLIX</h3>
+                        <p class="top-opt-desc">Netflix 4K Ultra HD accounts, private profiles & unlimited streaming passes.</p>
+                        <button class="btn btn-primary btn-block select-other-sub-btn" data-other="netflix">
+                            <img src="https://cdn.phototourl.com/free/2026-08-03-4689ac80-da22-468e-b8d0-35793e270935.webp" alt="Netflix" class="btn-icon-img"> Open NETFLIX Options
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hero Banner Section -->
+        <section id="hero" class="hero-section">
+            <div class="hero-glow bg-glow-1"></div>
+            <div class="hero-glow bg-glow-2"></div>
+            <div class="hero-content">
+                <div class="hero-badge" id="hero-badge-container"><i class="fa-solid fa-gauge-high"></i> <span id="hero-badge-text">Next-Gen Windows Tweaks & Gaming Performance</span></div>
+                <h1 class="hero-title" id="hero-title-text">DOMINATE YOUR GAMES WITH <br><span class="gradient-text">ZERO INPUT LAG & MAXIMUM FPS</span></h1>
+                <p class="hero-subtitle" id="hero-subtitle-text">Professional deep-system PC optimization custom tailored for esports players, streamers, and competitive gamers.</p>
+                <div class="hero-actions">
+                    <a href="#plans" class="btn btn-primary btn-lg pulse-glow"><i class="fa-solid fa-rocket"></i> Explore Plans</a>
+                    <button id="hero-auth-trigger" class="btn btn-outline btn-lg"><i class="fa-solid fa-user-plus"></i> Get Started</button>
+                </div>
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <span class="stat-number" id="hero-stat-1-num">+120%</span>
+                        <span class="stat-label" id="hero-stat-1-label">Average FPS Boost</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="hero-stat-2-num">&lt; 1ms</span>
+                        <span class="stat-label" id="hero-stat-2-label">System Latency</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="hero-stat-3-num">100%</span>
+                        <span class="stat-label" id="hero-stat-3-label">Safe & Verified Tweaks</span>
+                    </div>
+                </div>
+
+                <div class="hero-media-showcase">
+                    <img src="https://cdn.phototourl.com/free/2026-08-02-ded94d0e-216e-4205-8042-11526fcb6646.jpg" id="hero-showcase-img" alt="FULL OPTIMIZATION GUIDE" class="hero-showcase-img">
+                </div>
+            </div>
+        </section>
+
+        <!-- Pricing Plans Section -->
+        <section id="plans" class="plans-section">
+            <div class="section-header">
+                <span class="section-tagline">CHOOSE YOUR TIER</span>
+                <h2 class="section-title">PC OPTIMIZATION PACKAGES</h2>
+                <p class="section-description">Select the plan that suits your PC specs and performance goals.</p>
+            </div>
+
+            <div class="pricing-grid" id="pricing-grid-container">
+                <!-- Pricing plan cards rendered dynamically -->
+            </div>
+        </section>
+
+        <!-- User Order Status Dashboard (When Logged In) -->
+        <section id="user-orders-section" class="user-orders-section hidden">
+            <div class="container">
+                <div class="card glass-card">
+                    <div class="card-header">
+                        <h2><i class="fa-solid fa-receipt"></i> Your Optimization Orders & Verification</h2>
+                        <span id="user-order-count-badge" class="badge">0 Orders</span>
+                    </div>
+                    <div class="card-body">
+                        <div id="user-orders-list" class="orders-list">
+                            <!-- Dynamically loaded orders -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Dedicated Admin Dashboard Section (Visible only when KeyAuth Admin is authenticated) -->
+        <section id="admin-dashboard-page" class="admin-dashboard-page hidden">
+            <div class="admin-shell">
+                <!-- Enterprise Sidebar Navigation -->
+                <aside class="admin-sidebar" id="admin-sidebar">
+                    <div class="sidebar-brand">
+                        <i class="fa-solid fa-shield-halved brand-icon"></i>
+                        <div class="brand-text">
+                            <span class="brand-title">SMOOTH <span class="accent-text">X</span></span>
+                            <span class="brand-subtitle">EXECUTIVE ADMIN</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-user-card">
+                        <div class="user-avatar"><i class="fa-solid fa-user-shield"></i></div>
+                        <div class="user-info">
+                            <span class="user-role">SUPER ADMIN</span>
+                            <span id="sidebar-admin-email" class="user-email">KeyAuth Admin</span>
+                        </div>
+                    </div>
+
+                    <nav class="sidebar-nav">
+                        <button class="admin-tab-btn active" data-tab="overview">
+                            <i class="fa-solid fa-chart-pie"></i> Executive Overview
+                        </button>
+                        <button class="admin-tab-btn" data-tab="orders">
+                            <i class="fa-solid fa-receipt"></i> Orders & Verification <span id="sidebar-pending-badge" class="badge-count">0</span>
+                        </button>
+                        <button class="admin-tab-btn" data-tab="users">
+                            <i class="fa-solid fa-users"></i> Registered Users <span id="sidebar-users-badge" class="badge-count">0</span>
+                        </button>
+                        <button class="admin-tab-btn" data-tab="login-history">
+                            <i class="fa-solid fa-user-clock"></i> Login History Logs
+                        </button>
+                        <button class="admin-tab-btn" data-tab="verification-history">
+                            <i class="fa-solid fa-clipboard-check"></i> Verification Audit Trail
+                        </button>
+                        <button class="admin-tab-btn" data-tab="site-customizer">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Website Details
+                        </button>
+                        <button class="admin-tab-btn" data-tab="system-tools">
+                            <i class="fa-solid fa-sliders"></i> System Tools & Backup
+                        </button>
+                    </nav>
+
+                    <div class="sidebar-footer">
+                        <div id="cloud-sync-status" class="sync-badge badge-synced" title="All orders & changes are synced across devices in real time">
+                            <i class="fa-solid fa-cloud-check"></i> <span id="sync-status-text">Cloud Sync Live</span>
+                        </div>
+                        <button id="admin-sidebar-logout-btn" class="btn btn-sm btn-danger btn-block mt-3"><i class="fa-solid fa-right-from-bracket"></i> Sign Out</button>
+                    </div>
+                </aside>
+
+                <!-- Admin Main Workspace Area -->
+                <div class="admin-workspace">
+                    <!-- Top Bar Header -->
+                    <header class="admin-top-bar glass-card">
+                        <div class="top-bar-left">
+                            <button id="admin-sidebar-toggle" class="btn btn-secondary btn-sm sidebar-toggle-btn" title="Toggle Sidebar">
+                                <i class="fa-solid fa-bars"></i>
+                            </button>
+                            <div class="live-clock-badge" id="admin-live-clock">
+                                <i class="fa-regular fa-clock"></i> <span id="admin-clock-text">12:00:00 PM</span>
+                            </div>
+                        </div>
+
+                        <div class="top-bar-right" style="display: flex; gap: 10px;">
+                            <button id="admin-preview-site-btn" class="btn btn-primary btn-sm"><i class="fa-solid fa-eye"></i> Preview Customer Site</button>
+                            <button id="admin-refresh-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-arrows-rotate"></i> Sync Cloud Data</button>
+                        </div>
+                    </header>
+
+                    <!-- TAB 1: Executive Analytics Overview -->
+                    <div id="admin-tab-overview" class="admin-tab-view">
+                        <div class="admin-stats-grid">
+                            <div class="admin-stat-card glow-card">
+                                <div class="stat-card-header">
+                                    <span class="stat-name">Total Orders</span>
+                                    <div class="stat-icon-wrapper cyan"><i class="fa-solid fa-box-archive"></i></div>
+                                </div>
+                                <span class="stat-num" id="overview-stat-total-orders">0</span>
+                                <div class="stat-footer"><span class="trend-text text-accent"><i class="fa-solid fa-chart-line"></i> Total Received</span></div>
+                            </div>
+
+                            <div class="admin-stat-card warning-border glow-card">
+                                <div class="stat-card-header">
+                                    <span class="stat-name">Pending Verification</span>
+                                    <div class="stat-icon-wrapper warning"><i class="fa-solid fa-hourglass-half"></i></div>
+                                </div>
+                                <span class="stat-num text-warning" id="overview-stat-pending-orders">0</span>
+                                <div class="stat-footer"><span class="trend-text text-warning"><i class="fa-solid fa-triangle-exclamation"></i> Action Required</span></div>
+                            </div>
+
+                            <div class="admin-stat-card success-border glow-card">
+                                <div class="stat-card-header">
+                                    <span class="stat-name">Approved Orders</span>
+                                    <div class="stat-icon-wrapper success"><i class="fa-solid fa-circle-check"></i></div>
+                                </div>
+                                <span class="stat-num text-success" id="overview-stat-approved-orders">0</span>
+                                <div class="stat-footer"><span class="trend-text text-success" id="overview-approval-rate">100% Rate</span></div>
+                            </div>
+
+                            <div class="admin-stat-card gold-border glow-card">
+                                <div class="stat-card-header">
+                                    <span class="stat-name">Verified Revenue</span>
+                                    <div class="stat-icon-wrapper gold"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                                </div>
+                                <span class="stat-num text-gold" id="overview-stat-total-revenue">₹0</span>
+                                <div class="stat-footer"><span class="trend-text text-gold"><i class="fa-solid fa-vault"></i> Confirmed Income</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Live Order Volume Chart (Pure CSS & Dynamic JS) -->
+                        <div class="card glass-card activity-chart-card" style="padding: 24px; margin-bottom: 20px;">
+                            <div class="card-header-flex">
+                                <h3><i class="fa-solid fa-chart-line text-accent"></i> Live Order Volume Trend (Last 7 Days)</h3>
+                                <span class="badge badge-accent"><i class="fa-solid fa-bolt"></i> Realtime Analytics</span>
+                            </div>
+                            <div class="activity-chart-wrapper">
+                                <div class="activity-bars-container" id="admin-activity-bars-container">
+                                    <!-- Populated dynamically via JS -->
+                                </div>
+                                <div class="chart-labels-row" id="admin-chart-labels-row">
+                                    <!-- Date labels -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Revenue Breakdown by Optimization Plan Tier -->
+                        <div class="overview-grid-row">
+                            <div class="card glass-card tier-breakdown-card">
+                                <div class="card-header-flex">
+                                    <h3><i class="fa-solid fa-chart-bar text-accent"></i> Optimization Tier Revenue Distribution</h3>
+                                    <span class="badge badge-accent">Live Breakdown</span>
+                                </div>
+                                <div class="tier-progress-list">
+                                    <div class="tier-progress-item">
+                                        <div class="tier-info">
+                                            <span class="tier-name"><i class="fa-solid fa-bolt text-accent"></i> Basic Boost (₹399)</span>
+                                            <span id="tier-basic-count" class="tier-count">0 orders (₹0)</span>
+                                        </div>
+                                        <div class="progress-bar-bg"><div id="tier-basic-bar" class="progress-bar-fill cyan" style="width: 0%;"></div></div>
+                                    </div>
+
+                                    <div class="tier-progress-item">
+                                        <div class="tier-info">
+                                            <span class="tier-name"><i class="fa-solid fa-fire-flame-curved text-pink"></i> Pro Performance (₹699)</span>
+                                            <span id="tier-pro-count" class="tier-count">0 orders (₹0)</span>
+                                        </div>
+                                        <div class="progress-bar-bg"><div id="tier-pro-bar" class="progress-bar-fill pink" style="width: 0%;"></div></div>
+                                    </div>
+
+                                    <div class="tier-progress-item">
+                                        <div class="tier-info">
+                                            <span class="tier-name"><i class="fa-solid fa-crown text-gold"></i> VIP Extreme (₹1299)</span>
+                                            <span id="tier-vip-count" class="tier-count">0 orders (₹0)</span>
+                                        </div>
+                                        <div class="progress-bar-bg"><div id="tier-vip-bar" class="progress-bar-fill gold" style="width: 0%;"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card glass-card quick-stats-card">
+                                <div class="card-header-flex">
+                                    <h3><i class="fa-solid fa-bolt-lightning text-warning"></i> Quick System Metrics</h3>
+                                </div>
+                                <div class="metrics-list">
+                                    <div class="metric-row">
+                                        <span class="metric-label">Avg Order Value:</span>
+                                        <span id="overview-avg-order" class="metric-val text-accent">₹0</span>
+                                    </div>
+                                    <div class="metric-row">
+                                        <span class="metric-label">Registered Accounts:</span>
+                                        <span id="overview-total-users" class="metric-val">0 Users</span>
+                                    </div>
+                                    <div class="metric-row">
+                                        <span class="metric-label">Total Login Sessions:</span>
+                                        <span id="overview-total-logins" class="metric-val">0 Logs</span>
+                                    </div>
+                                    <div class="metric-row">
+                                        <span class="metric-label">Audit Audit Events:</span>
+                                        <span id="overview-total-audit" class="metric-val">0 Events</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 2: Orders & Verification Control Center -->
+                    <div id="admin-tab-orders" class="admin-tab-view hidden">
+                        <div class="card glass-card">
+                            <div class="admin-table-toolbar">
+                                <div class="toolbar-left">
+                                    <div class="search-box">
+                                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                                        <input type="text" id="admin-search-input" placeholder="Search Gmail, UTR or Plan...">
+                                    </div>
+                                    <div class="filter-tabs">
+                                        <button class="filter-btn active" data-filter="all">All Submissions</button>
+                                        <button class="filter-btn" data-filter="pending">Pending</button>
+                                        <button class="filter-btn" data-filter="approved">Approved</button>
+                                        <button class="filter-btn" data-filter="rejected">Rejected</button>
+                                    </div>
+                                </div>
+
+                                <div class="toolbar-right">
+                                    <button id="export-orders-csv-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+                                </div>
+                            </div>
+
+                            <!-- Batch Operation Bar -->
+                            <div id="batch-action-bar" class="batch-action-bar hidden">
+                                <div class="batch-info">
+                                    <i class="fa-solid fa-square-check text-accent"></i>
+                                    <span id="selected-orders-count">0 orders selected</span>
+                                </div>
+                                <div class="batch-buttons">
+                                    <button id="bulk-approve-btn" class="btn btn-sm btn-primary"><i class="fa-solid fa-check-double"></i> Bulk Approve</button>
+                                    <button id="bulk-reject-btn" class="btn btn-sm btn-secondary"><i class="fa-solid fa-xmark"></i> Bulk Reject</button>
+                                </div>
+                            </div>
+
+                            <div class="table-container">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th style="width: 40px; text-align: center;"><input type="checkbox" id="select-all-orders-checkbox"></th>
+                                            <th>Timestamp</th>
+                                            <th>User Email</th>
+                                            <th>Plan Details</th>
+                                            <th>Amount</th>
+                                            <th>UTR / Ref ID</th>
+                                            <th>Screenshot Proof</th>
+                                            <th>Status</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="page-admin-submissions-tbody">
+                                        <!-- Dynamically loaded order rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 3: Registered Users Management -->
+                    <div id="admin-tab-users" class="admin-tab-view hidden">
+                        <div class="card glass-card">
+                            <div class="admin-table-toolbar">
+                                <h3 style="font-size: 1.1rem;"><i class="fa-solid fa-users text-accent"></i> Registered Customer Gmail Accounts</h3>
+                                <button id="export-users-csv-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-csv"></i> Export Users CSV</button>
+                            </div>
+                            <div class="table-container">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Registered Date</th>
+                                            <th>Gmail ID</th>
+                                            <th>Account Role</th>
+                                            <th>Total Orders</th>
+                                            <th>Total Spent</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="page-admin-users-tbody">
+                                        <!-- Dynamic User rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 4: Login History Logs -->
+                    <div id="admin-tab-login-history" class="admin-tab-view hidden">
+                        <div class="card glass-card">
+                            <div class="admin-table-toolbar">
+                                <h3 style="font-size: 1.1rem;"><i class="fa-solid fa-user-shield text-accent"></i> Authentication & Access Logs</h3>
+                                <div style="display: flex; gap: 10px;">
+                                    <button id="export-logins-csv-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+                                    <button id="clear-login-history-btn" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Clear Logs</button>
+                                </div>
+                            </div>
+                            <div class="table-container">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Gmail ID</th>
+                                            <th>Role</th>
+                                            <th>Auth Status</th>
+                                            <th>Device / Browser Agent</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="page-admin-login-history-tbody">
+                                        <!-- Dynamic login rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 5: Payment Verification Audit Trail -->
+                    <div id="admin-tab-verification-history" class="admin-tab-view hidden">
+                        <div class="card glass-card">
+                            <div class="admin-table-toolbar">
+                                <h3 style="font-size: 1.1rem;"><i class="fa-solid fa-file-invoice-dollar text-success"></i> Payment Verification Audit History</h3>
+                                <div style="display: flex; gap: 10px;">
+                                    <button id="export-audit-csv-btn" class="btn btn-secondary btn-sm"><i class="fa-solid fa-file-csv"></i> Export CSV</button>
+                                    <button id="clear-verification-history-btn" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Clear Audit Trail</button>
+                                </div>
+                            </div>
+                            <div class="table-container">
+                                <table class="admin-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Timestamp</th>
+                                            <th>Order ID</th>
+                                            <th>Customer Email</th>
+                                            <th>Plan Name</th>
+                                            <th>Amount</th>
+                                            <th>UTR / Ref ID</th>
+                                            <th>Action Executed</th>
+                                            <th>Action By</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="page-admin-verification-history-tbody">
+                                        <!-- Dynamic verification audit rows -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- TAB 6: Edit Full Website Details -->
+                    <div id="admin-tab-site-customizer" class="admin-tab-view hidden">
+                        <div class="card glass-card customizer-box">
+                            <div class="card-header-flex">
+                                <h3><i class="fa-solid fa-pen-to-square text-accent"></i> Website Full Details Editor</h3>
+                                <span class="badge badge-accent"><i class="fa-solid fa-wifi"></i> Live Real-Time Sync</span>
+                            </div>
+                            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+                                Edit full website details including Brand Name, Payment UPI ID, QR Code image, Discord link, Theme Colors, Landing Titles & Metrics, and Plan Packages.
+                            </p>
+                            <form id="customizer-settings-form" novalidate>
+                                <!-- Primary Admin Category Switcher Bar -->
+                                <div class="admin-category-switch-bar">
+                                    <button type="button" class="admin-cat-toggle-btn active" id="admin-toggle-opt-btn" data-cat="optimization">
+                                        <i class="fa-solid fa-sliders"></i> OPTIMIZATION CONTROL
+                                    </button>
+                                    <button type="button" class="admin-cat-toggle-btn" id="admin-toggle-sensi-btn" data-cat="sensi">
+                                        <i class="fa-solid fa-crosshairs"></i> SENSI CONTROL
+                                    </button>
+                                </div>
+
+                                <!-- OPTIMIZATION CONTROL CONTAINER -->
+                                <div id="admin-customizer-opt-container">
+                                    <div class="customizer-sections-wrapper">
+                                        <!-- Core Branding & Theme Controls -->
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-palette text-accent"></i> Core Branding & Payment Controls</h4>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1">
+                                                    <label for="cust-brand-name">Brand Logo / Header Name</label>
+                                                    <input type="text" id="cust-brand-name" placeholder="SMOOTH X STORE">
+                                                </div>
+                                                <div class="form-group flex-1">
+                                                    <label for="cust-discord-link">Discord Server Invite Link</label>
+                                                    <input type="url" id="cust-discord-link" placeholder="https://discord.gg/...">
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1">
+                                                    <label for="cust-upi-id">Payment UPI ID (FamPay / GPay)</label>
+                                                    <input type="text" id="cust-upi-id" placeholder="rithwik0000@fam">
+                                                </div>
+                                                <div class="form-group flex-1">
+                                                    <label for="cust-qr-upload">Upload Payment QR Code Image</label>
+                                                    <input type="file" id="cust-qr-upload" accept="image/*">
+                                                    <div class="qr-preview-box mt-2" style="display: flex; align-items: center; gap: 10px;">
+                                                        <img id="cust-qr-preview" src="qr.jpg" alt="QR Preview" style="max-height: 80px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1);">
+                                                        <span style="font-size: 0.8rem; color: var(--text-muted);">Current Active QR</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1">
+                                                    <label for="cust-primary-color">Primary Accent Color (<span id="cust-primary-color-hex">#00f2fe</span>)</label>
+                                                    <input type="color" id="cust-primary-color" value="#00f2fe" style="height: 42px; width: 100%; border-radius: 8px; cursor: pointer;">
+                                                </div>
+                                                <div class="form-group flex-1">
+                                                    <label for="cust-secondary-color">Secondary Accent Color (<span id="cust-secondary-color-hex">#e100ff</span>)</label>
+                                                    <input type="color" id="cust-secondary-color" value="#e100ff" style="height: 42px; width: 100%; border-radius: 8px; cursor: pointer;">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Optimization Hero Landing Configuration -->
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-desktop text-warning"></i> Optimization Hero Landing & Systems Metrics</h4>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1">
+                                                    <label for="cust-hero-badge">Hero Top Badge Text</label>
+                                                    <input type="text" id="cust-hero-badge">
+                                                </div>
+                                                <div class="form-group flex-1">
+                                                    <label for="cust-hero-title">Main Headline HTML</label>
+                                                    <input type="text" id="cust-hero-title">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="cust-hero-subtitle">Sub-headline Description</label>
+                                                <textarea id="cust-hero-subtitle" rows="2"></textarea>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-hero-stat1-num">Stat 1 Value</label><input type="text" id="cust-hero-stat1-num"></div>
+                                                <div class="form-group flex-1"><label for="cust-hero-stat1-label">Stat 1 Label</label><input type="text" id="cust-hero-stat1-label"></div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-hero-stat2-num">Stat 2 Value</label><input type="text" id="cust-hero-stat2-num"></div>
+                                                <div class="form-group flex-1"><label for="cust-hero-stat2-label">Stat 2 Label</label><input type="text" id="cust-hero-stat2-label"></div>
+                                            </div>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-hero-stat3-num">Stat 3 Value</label><input type="text" id="cust-hero-stat3-num"></div>
+                                                <div class="form-group flex-1"><label for="cust-hero-stat3-label">Stat 3 Label</label><input type="text" id="cust-hero-stat3-label"></div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Optimization Pricing & Plans -->
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-box-open text-success"></i> Optimization Plans Configurator</h4>
+                                            
+                                            <!-- Basic Plan -->
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 15px; border-left: 3px solid var(--accent-cyan);">
+                                                <h5><i class="fa-solid fa-seedling text-accent"></i> Basic Optimization Tier</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-plan-basic-badge">Badge</label><input type="text" id="cust-plan-basic-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-plan-basic-title">Title</label><input type="text" id="cust-plan-basic-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-plan-basic-price">Price (₹)</label><input type="number" id="cust-plan-basic-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-plan-basic-tagline">Tagline</label><input type="text" id="cust-plan-basic-tagline"></div>
+                                                <div class="form-group"><label for="cust-plan-basic-features">Features (1 per line)</label><textarea id="cust-plan-basic-features" rows="4"></textarea></div>
+                                            </div>
+
+                                            <!-- Pro Plan -->
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 15px; border-left: 3px solid var(--accent-pink);">
+                                                <h5><i class="fa-solid fa-fire text-warning"></i> Pro Optimization Tier</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-plan-pro-badge">Badge</label><input type="text" id="cust-plan-pro-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-plan-pro-title">Title</label><input type="text" id="cust-plan-pro-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-plan-pro-price">Price (₹)</label><input type="number" id="cust-plan-pro-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-plan-pro-tagline">Tagline</label><input type="text" id="cust-plan-pro-tagline"></div>
+                                                <div class="form-group"><label for="cust-plan-pro-features">Features (1 per line)</label><textarea id="cust-plan-pro-features" rows="4"></textarea></div>
+                                            </div>
+
+                                            <!-- Ultimate Plan -->
+                                            <div class="card glass-card inner-config-card" style="padding: 15px; border-left: 3px solid #ffb703;">
+                                                <h5><i class="fa-solid fa-crown text-gold"></i> Ultimate Optimization Tier</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-plan-ultimate-badge">Badge</label><input type="text" id="cust-plan-ultimate-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-plan-ultimate-title">Title</label><input type="text" id="cust-plan-ultimate-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-plan-ultimate-price">Price (₹)</label><input type="number" id="cust-plan-ultimate-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-plan-ultimate-tagline">Tagline</label><input type="text" id="cust-plan-ultimate-tagline"></div>
+                                                <div class="form-group"><label for="cust-plan-ultimate-features">Features (1 per line)</label><textarea id="cust-plan-ultimate-features" rows="4"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- SENSI CONTROL CONTAINER -->
+                                <div id="admin-customizer-sensi-container" class="hidden">
+                                    <!-- Sensi Sub-category Switcher (PC, IOS, ANDROID) -->
+                                    <div class="sensi-sub-switch-bar mb-3" style="display: flex; gap: 10px; margin-top: 15px;">
+                                        <button type="button" class="sensi-sub-toggle-btn active" data-subsensi="pc">
+                                            <i class="fa-solid fa-desktop"></i> PC SENSI
+                                        </button>
+                                        <button type="button" class="sensi-sub-toggle-btn" data-subsensi="ios">
+                                            <i class="fa-solid fa-mobile-screen-button"></i> IOS SENSI
+                                        </button>
+                                        <button type="button" class="sensi-sub-toggle-btn" data-subsensi="android">
+                                            <i class="fa-brands fa-android"></i> ANDROID SENSI
+                                        </button>
+                                    </div>
+
+                                    <!-- PC SENSI BLOCK -->
+                                    <div id="admin-sensi-pc-block">
+                                        <div class="customizer-section-block mt-3">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-desktop text-accent"></i> PC SENSI Hero Banner & Metrics</h4>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-sensi-pc-hero-badge">Hero Badge</label><input type="text" id="cust-sensi-pc-hero-badge"></div>
+                                                <div class="form-group flex-1"><label for="cust-sensi-pc-hero-title">Hero Title HTML</label><input type="text" id="cust-sensi-pc-hero-title"></div>
+                                            </div>
+                                            <div class="form-group"><label for="cust-sensi-pc-hero-subtitle">Hero Subtitle</label><textarea id="cust-sensi-pc-hero-subtitle" rows="2"></textarea></div>
+                                        </div>
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-box-open text-accent"></i> PC SENSI Plans Configurator</h4>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>PC SENSI Plan 1</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan1-badge">Badge</label><input type="text" id="cust-sensi-pc-plan1-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan1-title">Title</label><input type="text" id="cust-sensi-pc-plan1-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan1-price">Price (₹)</label><input type="number" id="cust-sensi-pc-plan1-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-pc-plan1-tagline">Tagline</label><input type="text" id="cust-sensi-pc-plan1-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-pc-plan1-features">Features</label><textarea id="cust-sensi-pc-plan1-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>PC SENSI Plan 2</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan2-badge">Badge</label><input type="text" id="cust-sensi-pc-plan2-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan2-title">Title</label><input type="text" id="cust-sensi-pc-plan2-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan2-price">Price (₹)</label><input type="number" id="cust-sensi-pc-plan2-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-pc-plan2-tagline">Tagline</label><input type="text" id="cust-sensi-pc-plan2-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-pc-plan2-features">Features</label><textarea id="cust-sensi-pc-plan2-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card" style="padding: 12px;">
+                                                <h5>PC SENSI Plan 3</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan3-badge">Badge</label><input type="text" id="cust-sensi-pc-plan3-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan3-title">Title</label><input type="text" id="cust-sensi-pc-plan3-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-pc-plan3-price">Price (₹)</label><input type="number" id="cust-sensi-pc-plan3-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-pc-plan3-tagline">Tagline</label><input type="text" id="cust-sensi-pc-plan3-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-pc-plan3-features">Features</label><textarea id="cust-sensi-pc-plan3-features" rows="4"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- IOS SENSI BLOCK -->
+                                    <div id="admin-sensi-ios-block" class="hidden">
+                                        <div class="customizer-section-block mt-3">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-mobile-screen-button text-pink"></i> IOS SENSI Hero Banner & Metrics</h4>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-sensi-ios-hero-badge">Hero Badge</label><input type="text" id="cust-sensi-ios-hero-badge"></div>
+                                                <div class="form-group flex-1"><label for="cust-sensi-ios-hero-title">Hero Title HTML</label><input type="text" id="cust-sensi-ios-hero-title"></div>
+                                            </div>
+                                            <div class="form-group"><label for="cust-sensi-ios-hero-subtitle">Hero Subtitle</label><textarea id="cust-sensi-ios-hero-subtitle" rows="2"></textarea></div>
+                                        </div>
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-box-open text-pink"></i> IOS SENSI Plans Configurator</h4>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>IOS SENSI Plan 1</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan1-badge">Badge</label><input type="text" id="cust-sensi-ios-plan1-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan1-title">Title</label><input type="text" id="cust-sensi-ios-plan1-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan1-price">Price (₹)</label><input type="number" id="cust-sensi-ios-plan1-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-ios-plan1-tagline">Tagline</label><input type="text" id="cust-sensi-ios-plan1-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-ios-plan1-features">Features</label><textarea id="cust-sensi-ios-plan1-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>IOS SENSI Plan 2</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan2-badge">Badge</label><input type="text" id="cust-sensi-ios-plan2-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan2-title">Title</label><input type="text" id="cust-sensi-ios-plan2-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan2-price">Price (₹)</label><input type="number" id="cust-sensi-ios-plan2-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-ios-plan2-tagline">Tagline</label><input type="text" id="cust-sensi-ios-plan2-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-ios-plan2-features">Features</label><textarea id="cust-sensi-ios-plan2-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card" style="padding: 12px;">
+                                                <h5>IOS SENSI Plan 3</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan3-badge">Badge</label><input type="text" id="cust-sensi-ios-plan3-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan3-title">Title</label><input type="text" id="cust-sensi-ios-plan3-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-ios-plan3-price">Price (₹)</label><input type="number" id="cust-sensi-ios-plan3-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-ios-plan3-tagline">Tagline</label><input type="text" id="cust-sensi-ios-plan3-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-ios-plan3-features">Features</label><textarea id="cust-sensi-ios-plan3-features" rows="4"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- ANDROID SENSI BLOCK -->
+                                    <div id="admin-sensi-android-block" class="hidden">
+                                        <div class="customizer-section-block mt-3">
+                                            <h4 class="customizer-block-title"><i class="fa-brands fa-android text-gold"></i> ANDROID SENSI Hero Banner & Metrics</h4>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-sensi-android-hero-badge">Hero Badge</label><input type="text" id="cust-sensi-android-hero-badge"></div>
+                                                <div class="form-group flex-1"><label for="cust-sensi-android-hero-title">Hero Title HTML</label><input type="text" id="cust-sensi-android-hero-title"></div>
+                                            </div>
+                                            <div class="form-group"><label for="cust-sensi-android-hero-subtitle">Hero Subtitle</label><textarea id="cust-sensi-android-hero-subtitle" rows="2"></textarea></div>
+                                        </div>
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-box-open text-gold"></i> ANDROID SENSI Plans Configurator</h4>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>ANDROID SENSI Plan 1</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan1-badge">Badge</label><input type="text" id="cust-sensi-android-plan1-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan1-title">Title</label><input type="text" id="cust-sensi-android-plan1-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan1-price">Price (₹)</label><input type="number" id="cust-sensi-android-plan1-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-android-plan1-tagline">Tagline</label><input type="text" id="cust-sensi-android-plan1-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-android-plan1-features">Features</label><textarea id="cust-sensi-android-plan1-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>ANDROID SENSI Plan 2</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan2-badge">Badge</label><input type="text" id="cust-sensi-android-plan2-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan2-title">Title</label><input type="text" id="cust-sensi-android-plan2-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan2-price">Price (₹)</label><input type="number" id="cust-sensi-android-plan2-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-android-plan2-tagline">Tagline</label><input type="text" id="cust-sensi-android-plan2-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-android-plan2-features">Features</label><textarea id="cust-sensi-android-plan2-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card" style="padding: 12px;">
+                                                <h5>ANDROID SENSI Plan 3</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan3-badge">Badge</label><input type="text" id="cust-sensi-android-plan3-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan3-title">Title</label><input type="text" id="cust-sensi-android-plan3-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-sensi-android-plan3-price">Price (₹)</label><input type="number" id="cust-sensi-android-plan3-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-sensi-android-plan3-tagline">Tagline</label><input type="text" id="cust-sensi-android-plan3-tagline"></div>
+                                                <div class="form-group"><label for="cust-sensi-android-plan3-features">Features</label><textarea id="cust-sensi-android-plan3-features" rows="4"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="customizer-actions-row mt-4" style="display: flex; gap: 15px; margin-top: 20px;">
+                                    <button type="button" id="cust-reset-btn" class="btn btn-secondary"><i class="fa-solid fa-arrows-rotate"></i> Reset Default Website Data</button>
+                                    <button type="submit" class="btn btn-glow pulse-glow"><i class="fa-solid fa-floppy-disk"></i> Save & Apply All Website Details</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- TAB 7: System Tools & Data Backup -->
+                    <div id="admin-tab-system-tools" class="admin-tab-view hidden">
+                        <div class="tools-grid-row">
+                            <div class="card glass-card tool-box">
+                                <div class="tool-header">
+                                    <i class="fa-solid fa-database tool-icon text-accent"></i>
+                                    <div>
+                                        <h4>Full Database JSON Backup & Restore</h4>
+                                        <p class="tool-sub">Export or import entire system data (Orders, Users, Login History & Audit Trails)</p>
+                                    </div>
+                                </div>
+                                <div class="tool-actions-row">
+                                    <button id="export-json-backup-btn" class="btn btn-primary"><i class="fa-solid fa-download"></i> Export JSON Backup</button>
+                                    <label for="import-json-file-input" class="btn btn-outline" style="margin: 0; cursor: pointer;">
+                                        <i class="fa-solid fa-upload"></i> Restore JSON File
+                                    </label>
+                                    <input type="file" id="import-json-file-input" accept=".json" class="hidden">
+                                </div>
+                            </div>
+
+                            <div class="card glass-card tool-box">
+                                <div class="tool-header">
+                                    <i class="fa-solid fa-cloud-arrow-up tool-icon text-success"></i>
+                                    <div>
+                                        <h4>Cloud Synchronization Control</h4>
+                                        <p class="tool-sub">Force sync current local database state to Cloud JSON storage</p>
+                                    </div>
+                                </div>
+                                <div class="tool-actions-row">
+                                    <button id="force-cloud-push-btn" class="btn btn-glow"><i class="fa-solid fa-cloud-arrow-up"></i> Force Push Cloud Sync</button>
+                                    <button id="force-cloud-pull-btn" class="btn btn-secondary"><i class="fa-solid fa-cloud-arrow-down"></i> Force Pull Cloud Data</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Auth Modal (Sign In / Register) -->
+    <div id="auth-modal" class="modal-overlay hidden">
+        <div class="modal-box glass-card">
+            <button class="modal-close" id="close-auth-modal">&times;</button>
+            <div class="auth-tabs">
+                <button id="tab-signin-btn" class="auth-tab active">Sign In</button>
+                <button id="tab-signup-btn" class="auth-tab">Register Account</button>
+                <button id="tab-keyauth-btn" class="auth-tab keyauth-tab hidden"><i class="fa-solid fa-key"></i> Admin KeyAuth</button>
+            </div>
+
+            <!-- Sign In Form -->
+            <form id="signin-form" class="auth-form">
+                <h3 class="auth-title">Welcome Back</h3>
+                <p class="auth-sub">Sign in with your Gmail ID and password</p>
+                <div class="form-group">
+                    <label for="signin-email"><i class="fa-solid fa-envelope"></i> Gmail ID</label>
+                    <input type="email" id="signin-email" placeholder="example@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signin-password"><i class="fa-solid fa-lock"></i> Password</label>
+                    <input type="password" id="signin-password" placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-right-to-bracket"></i> Sign In</button>
+            </form>
+
+            <!-- Sign Up / Register Form -->
+            <form id="signup-form" class="auth-form hidden">
+                <h3 class="auth-title">Create Account</h3>
+                <p class="auth-sub">Register with your Gmail ID to purchase optimization plans</p>
+                <div class="form-group">
+                    <label for="signup-email"><i class="fa-solid fa-envelope"></i> Gmail ID</label>
+                    <input type="email" id="signup-email" placeholder="yourname@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password"><i class="fa-solid fa-lock"></i> Create Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a strong password" required minlength="4">
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password"><i class="fa-solid fa-lock"></i> Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" placeholder="Re-enter password" required>
+                </div>
+                <button type="submit" class="btn btn-glow btn-block"><i class="fa-solid fa-user-plus"></i> Complete Registration</button>
+            </form>
+
+            <!-- KeyAuth Admin Form -->
+            <form id="keyauth-form" class="auth-form hidden">
+                <h3 class="auth-title"><i class="fa-solid fa-user-shield text-accent"></i> KeyAuth Admin Login</h3>
+                <p class="auth-sub">Enter your KeyAuth Username & Password to access Full Admin Controls</p>
+                <div class="form-group">
+                    <label for="keyauth-username"><i class="fa-solid fa-user-shield"></i> KeyAuth Username</label>
+                    <input type="text" id="keyauth-username" placeholder="KeyAuth Username" required autocomplete="username">
+                </div>
+                <div class="form-group">
+                    <label for="keyauth-password"><i class="fa-solid fa-lock"></i> KeyAuth Password</label>
+                    <input type="password" id="keyauth-password" placeholder="KeyAuth Password" required autocomplete="current-password">
+                </div>
+                <button type="submit" class="btn btn-secondary btn-block"><i class="fa-solid fa-shield-halved"></i> Verify & Authenticate</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Checkout & Payment Modal -->
+    <div id="payment-modal" class="modal-overlay hidden">
+        <div class="modal-box modal-lg glass-card">
+            <button class="modal-close" id="close-payment-modal">&times;</button>
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-credit-card"></i> Complete Payment & Order</h2>
+                <p id="checkout-selected-plan-text" class="text-accent">Selected Plan: ₹699</p>
+            </div>
+            
+            <div class="payment-layout">
+                <!-- Payment Instructions & Gateways -->
+                <div class="payment-methods-col">
+                    <h3 class="col-title"><i class="fa-solid fa-qrcode"></i> Payment Options</h3>
+                    
+                    <!-- Option 1: QR Code Scanner -->
+                    <div class="payment-option-box">
+                        <div class="option-header">
+                            <span class="option-number">Option 1</span>
+                            <h4>Scan QR Code</h4>
+                        </div>
+                        <div class="qr-container">
+                            <img src="qr.jpg" id="checkout-qr-img" alt="Payment QR Code" class="qr-image">
+                        </div>
+                        <p class="qr-note"><i class="fa-solid fa-mobile-screen"></i> Scan with GPay, PhonePe, Paytm or any UPI App</p>
+                    </div>
+
+                    <!-- Option 2: UPI ID -->
+                    <div class="payment-option-box">
+                        <div class="option-header">
+                            <span class="option-number">Option 2</span>
+                            <h4>Pay via UPI ID</h4>
+                        </div>
+                        <div class="upi-copy-box">
+                            <div class="upi-id-display">
+                                <i class="fa-solid fa-wallet"></i>
+                                <span id="upi-id-text">rithwik0000@fam</span>
+                            </div>
+                            <button id="copy-upi-btn" class="btn btn-sm btn-outline"><i class="fa-solid fa-copy"></i> Copy UPI ID</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Proof Upload Form -->
+                <div class="payment-proof-col">
+                    <h3 class="col-title"><i class="fa-solid fa-upload"></i> Upload Payment Screenshot</h3>
+                    <form id="payment-upload-form">
+                        <div class="form-group">
+                            <label for="utr-number"><i class="fa-solid fa-hashtag"></i> Transaction UTR / Ref Number</label>
+                            <input type="text" id="utr-number" placeholder="e.g. 329182391028" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label><i class="fa-solid fa-image"></i> Payment Screenshot Proof</label>
+                            <div class="file-upload-dropzone" id="dropzone">
+                                <input type="file" id="screenshot-file" accept="image/*" class="file-input" required>
+                                <div class="dropzone-content" id="dropzone-prompt">
+                                    <i class="fa-solid fa-cloud-arrow-up dropzone-icon"></i>
+                                    <p>Click or drag payment screenshot here</p>
+                                    <span class="file-limits">JPG, PNG or WEBP (Max 5MB)</span>
+                                </div>
+                                <div class="file-preview-container hidden" id="preview-container">
+                                    <img id="file-preview-img" src="" alt="Screenshot Preview">
+                                    <button type="button" id="remove-file-btn" class="btn btn-sm btn-danger"><i class="fa-solid fa-trash"></i> Remove</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-glow btn-block btn-lg" id="submit-payment-btn">
+                            <i class="fa-solid fa-paper-plane"></i> Submit Payment for Admin Verification
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Image Modal for Full Screenshot Viewing in Admin Panel -->
+    <div id="image-viewer-modal" class="modal-overlay hidden z-top">
+        <div class="modal-box glass-card image-viewer-box">
+            <button class="modal-close" id="close-image-viewer">&times;</button>
+            <h3 class="image-viewer-title">Payment Screenshot Verification</h3>
+            <div class="full-image-wrapper">
+                <img id="full-screenshot-img" src="" alt="Payment Screenshot Full View">
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Completion Modal for Admin Panel -->
+    <div id="order-completion-modal" class="modal-overlay hidden z-top">
+        <div class="modal-box modal-lg glass-card completion-modal-box">
+            <button class="modal-close" id="close-completion-modal">&times;</button>
+            
+            <div class="completion-header">
+                <div class="completion-badge-tag"><i class="fa-solid fa-flag-checkered"></i> ORDER COMPLETION PAGE</div>
+                <h2 id="completion-order-title">Order Completion & History Control</h2>
+                <p class="completion-subtitle">Review order details and complete order to wipe history from purchaser account.</p>
+            </div>
+
+            <div class="completion-grid">
+                <!-- Order Summary Details Column -->
+                <div class="completion-col main-info-col">
+                    <div class="info-group">
+                        <span class="info-label"><i class="fa-solid fa-hashtag"></i> Order ID:</span>
+                        <span id="comp-order-id" class="info-value text-accent">ORD-123456</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label"><i class="fa-solid fa-envelope"></i> Purchaser Gmail:</span>
+                        <span id="comp-user-email" class="info-value">user@gmail.com</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label"><i class="fa-solid fa-box"></i> Package Selected:</span>
+                        <span id="comp-plan-name" class="info-value">Pro Performance Tier</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label"><i class="fa-solid fa-indian-rupee-sign"></i> Amount Paid:</span>
+                        <span id="comp-amount" class="info-value text-success" style="font-weight: 700;">₹699</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label"><i class="fa-solid fa-receipt"></i> UTR / Ref Number:</span>
+                        <code id="comp-utr" class="info-code">329182391028</code>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label"><i class="fa-regular fa-clock"></i> Date & Time:</span>
+                        <span id="comp-timestamp" class="info-value text-muted">2026-08-01 12:00</span>
+                    </div>
+                    <div class="info-group">
+                        <span class="info-label"><i class="fa-solid fa-shield"></i> Current Status:</span>
+                        <span id="comp-status-badge" class="badge badge-approved">Approved</span>
+                    </div>
+                </div>
+
+                <!-- Proof & Checklist Column -->
+                <div class="completion-col proof-checklist-col">
+                    <div class="proof-box">
+                        <span class="info-label"><i class="fa-solid fa-image"></i> Payment Proof Screenshot:</span>
+                        <div class="proof-img-container">
+                            <img id="comp-screenshot-img" src="" alt="Payment Proof">
+                        </div>
+                    </div>
+
+                    <div class="service-checklist-box">
+                        <div class="checklist-header-flex">
+                            <span class="info-label"><i class="fa-solid fa-list-check"></i> Verification & Optimization Checklist:</span>
+                            <span id="comp-checklist-progress" class="badge badge-accent">0/5 Done (0%)</span>
+                        </div>
+                        <div id="comp-checklist-container" class="checklist-items-grid">
+                            <!-- Populated dynamically per order in app.js -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actions Footer Bar -->
+            <div class="completion-actions-bar">
+                <button id="comp-complete-purge-btn" class="btn btn-primary btn-lg pulse-glow">
+                    <i class="fa-solid fa-circle-check"></i> Complete & Wipe Purchaser History
+                </button>
+                <button id="comp-delete-order-btn" class="btn btn-danger btn-lg">
+                    <i class="fa-solid fa-trash"></i> Remove Order
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Instagram Side Widget -->
+    <a href="https://www.instagram.com/_tl_smooth_777_?igsh=emlmdmJud3VpcGZl" target="_blank" rel="noopener noreferrer" class="floating-instagram-btn" title="Follow us on Instagram">
+        <i class="fa-brands fa-instagram instagram-icon"></i>
+        <span class="instagram-tooltip">Follow on Instagram</span>
+    </a>
+
+    <script src="app.js"></script>
+</body>
+</html>
