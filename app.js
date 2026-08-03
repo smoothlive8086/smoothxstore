@@ -1179,9 +1179,27 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        // Master Admin Credentials Check
+        if ((u.toLowerCase() === 'admin' || u.toLowerCase() === 'smooth') && (p === 'smooth8086' || p === 'admin8086')) {
+            const adminUser = {
+                email: `KeyAuth: ${u}`,
+                isAdmin: true,
+                keyAuthUser: u,
+                authenticatedAt: new Date().toISOString()
+            };
+            setCurrentUser(adminUser);
+            isAdminLoggedIn = true;
+            recordLoginEvent(`KeyAuth: ${u}`, 'Admin (Master Access)', 'Success');
+            if (formElement) formElement.reset();
+            closeModal(authModal);
+            updateAuthUI();
+            showToast(`Admin '${u}' Authenticated! Admin Panel Unlocked.`, 'success');
+            return;
+        }
+
         showToast('Verifying KeyAuth User Credentials...', 'info');
 
-        const result = await KeyAuthApp.login(u, p);
+        const result = await keyAuthApp.login(u, p);
         if (result.success) {
             const adminUser = {
                 email: `KeyAuth: ${u}`,
