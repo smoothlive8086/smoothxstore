@@ -1,9 +1,9 @@
 const { MongoClient } = require('mongodb');
 
-const DEFAULT_URI = "mongodb+srv://Vercel-Admin-smoothxoptimization:smooth8086@smoothxoptimization.lapovzn.mongodb.net/?retryWrites=true&w=majority&appName=smoothxoptimization";
+const DEFAULT_URI = "mongodb+srv://Vercel-Admin-atlas-citrine-cloud:rithwik94950315@atlas-citrine-cloud.v99ntaq.mongodb.net/?retryWrites=true&w=majority&appName=atlas-citrine-cloud";
 
 let MONGODB_URI = process.env.MONGODB_URI;
-if (!MONGODB_URI || MONGODB_URI.includes('S1Qp6fDIgo38js14')) {
+if (!MONGODB_URI || MONGODB_URI.includes('smoothxoptimization')) {
     MONGODB_URI = DEFAULT_URI;
 }
 
@@ -23,7 +23,7 @@ async function connectToDatabase() {
         connectTimeoutMS: 5000
     });
     await client.connect();
-    const db = client.db('smooth_optimization');
+    const db = client.db('smooth_store');
     cachedClient = client;
     cachedDb = db;
     return { client, db };
