@@ -69,6 +69,23 @@ module.exports = async (req, res) => {
             const body = req.body || {};
             const { action, data } = body;
 
+            if (action === 'keyauth' && data) {
+                try {
+                    const postParams = new URLSearchParams(data).toString();
+                    const kaRes = await fetch('https://keyauth.win/api/1.2/', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                        body: postParams
+                    });
+                    const kaJson = await kaRes.json();
+                    res.status(200).json(kaJson);
+                    return;
+                } catch (kaErr) {
+                    res.status(200).json({ success: false, message: 'KeyAuth proxy error: ' + kaErr.message });
+                    return;
+                }
+            }
+
             if (action === 'saveOrder' && data && data.id) {
                 await db.collection('orders').updateOne({ id: data.id }, { $set: data }, { upsert: true });
                 res.status(200).json({ success: true });
