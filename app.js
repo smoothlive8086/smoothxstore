@@ -76,6 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 type: 'init',
                 name: this.name,
                 ownerid: this.ownerid,
+                secret: this.secret,
                 init_iv: 'iv',
                 version: this.version
             });
@@ -121,11 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const keyAuthApp = new KeyAuth({
-        name: "Smoothlive380's Application",
-        ownerid: "V1cJiIajaO",
-        secret: "87fb1ba1ebd3baccb5354c843b3d9aa249f13d6062d4baf352bbdd69fb0391fc",
+        name: "Smoothlive8086's Application",
+        ownerid: "kxhJUGG37M",
+        secret: "6132d16a79c00aedb747efb145ffcbf2f729adbb4dbb0c33088cce80ee89a3e0",
         version: "1.0"
     });
+    const KeyAuthApp = keyAuthApp;
 
     // Settings Defaults Schema for OPTIMIZATION & SENSI
     const DEFAULT_SETTINGS = {
@@ -3271,5 +3273,3 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-
