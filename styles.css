@@ -1948,7 +1948,7 @@ h6 {
     z-index: 2500;
 }
 
-/* Instagram Floating Widget & Nav Link */
+/* Instagram & Discord Floating Widgets & Nav Links */
 .instagram-nav-link {
     display: inline-flex;
     align-items: center;
@@ -1962,23 +1962,53 @@ h6 {
     text-shadow: 0 0 10px rgba(225, 48, 108, 0.5);
 }
 
-.floating-instagram-btn {
+.discord-nav-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #5865F2 !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.discord-nav-link:hover {
+    color: #7983f5 !important;
+    text-shadow: 0 0 10px rgba(88, 101, 242, 0.6);
+}
+
+/* Floating Social Widgets Container & Buttons */
+.floating-social-container {
     position: fixed;
     right: 28px;
     bottom: 32px;
     z-index: 1500;
-    width: 58px;
-    height: 58px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    align-items: center;
+}
+
+.floating-social-container.hidden {
+    display: none !important;
+}
+
+.floating-social-btn {
+    position: relative;
+    width: 54px;
+    height: 54px;
     border-radius: 50%;
-    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
     display: flex;
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-size: 1.8rem;
-    box-shadow: 0 8px 25px rgba(214, 36, 159, 0.4);
+    font-size: 1.7rem;
     text-decoration: none;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.floating-instagram-btn {
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+    box-shadow: 0 8px 25px rgba(214, 36, 159, 0.4);
     animation: instaPulse 3s infinite;
 }
 
@@ -1987,11 +2017,22 @@ h6 {
     box-shadow: 0 12px 35px rgba(214, 36, 159, 0.7);
 }
 
+.floating-discord-btn {
+    background: linear-gradient(135deg, #5865F2 0%, #4752C4 100%);
+    box-shadow: 0 8px 25px rgba(88, 101, 242, 0.45);
+    animation: discordPulse 3s infinite;
+}
+
+.floating-discord-btn:hover {
+    transform: scale(1.12) rotate(-6deg);
+    box-shadow: 0 12px 35px rgba(88, 101, 242, 0.75);
+}
+
+.social-tooltip,
 .instagram-tooltip {
     position: absolute;
-    right: 70px;
+    right: 68px;
     background: rgba(10, 13, 20, 0.95);
-    border: 1px solid rgba(225, 48, 108, 0.4);
     color: #ffffff;
     padding: 6px 14px;
     border-radius: 20px;
@@ -2005,6 +2046,15 @@ h6 {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
 
+.instagram-tooltip {
+    border: 1px solid rgba(225, 48, 108, 0.4);
+}
+
+.discord-tooltip {
+    border: 1px solid rgba(88, 101, 242, 0.4);
+}
+
+.floating-social-btn:hover .social-tooltip,
 .floating-instagram-btn:hover .instagram-tooltip {
     opacity: 1;
     transform: translateX(0);
@@ -2021,6 +2071,20 @@ h6 {
 
     100% {
         box-shadow: 0 0 0 0 rgba(225, 48, 108, 0);
+    }
+}
+
+@keyframes discordPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(88, 101, 242, 0.5);
+    }
+
+    70% {
+        box-shadow: 0 0 0 16px rgba(88, 101, 242, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(88, 101, 242, 0);
     }
 }
 

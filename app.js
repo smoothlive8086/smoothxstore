@@ -913,7 +913,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Welcome Landing Auth Gate Elements
     const welcomeAuthScreen = document.getElementById('welcome-auth-screen');
+    const floatingSocialContainer = document.getElementById('floating-social-container') || document.querySelector('.floating-social-container');
     const floatingInstagramBtn = document.querySelector('.floating-instagram-btn');
+    const floatingDiscordBtn = document.querySelector('.floating-discord-btn');
     const gateTabSigninBtn = document.getElementById('gate-tab-signin-btn');
     const gateTabSignupBtn = document.getElementById('gate-tab-signup-btn');
     const gateTabKeyauthBtn = document.getElementById('gate-tab-keyauth-btn');
@@ -945,7 +947,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (mainNavLinks) mainNavLinks.classList.remove('hidden');
 
             if (welcomeAuthScreen) welcomeAuthScreen.classList.add('hidden');
+            if (floatingSocialContainer) floatingSocialContainer.classList.remove('hidden');
             if (floatingInstagramBtn) floatingInstagramBtn.classList.remove('hidden');
+            if (floatingDiscordBtn) floatingDiscordBtn.classList.remove('hidden');
 
             if (currentUser.isAdmin === true) {
                 isAdminLoggedIn = true;
@@ -1049,7 +1053,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (heroSection) heroSection.classList.add('hidden');
             if (plansSection) plansSection.classList.add('hidden');
             if (adminDashboardPage) adminDashboardPage.classList.add('hidden');
+            if (floatingSocialContainer) floatingSocialContainer.classList.add('hidden');
             if (floatingInstagramBtn) floatingInstagramBtn.classList.add('hidden');
+            if (floatingDiscordBtn) floatingDiscordBtn.classList.add('hidden');
         }
     }
 
