@@ -751,6 +751,9 @@
                                     <button type="button" class="admin-cat-toggle-btn" id="admin-toggle-sensi-btn" data-cat="sensi">
                                         <i class="fa-solid fa-crosshairs"></i> SENSI CONTROL
                                     </button>
+                                    <button type="button" class="admin-cat-toggle-btn" id="admin-toggle-other-btn" data-cat="other_purchases">
+                                        <i class="fa-solid fa-bag-shopping"></i> OTHER PURCHASES (OPTION 2)
+                                    </button>
                                 </div>
 
                                 <!-- OPTIMIZATION CONTROL CONTAINER -->
@@ -1015,6 +1018,137 @@
                                                 </div>
                                                 <div class="form-group"><label for="cust-sensi-android-plan3-tagline">Tagline</label><input type="text" id="cust-sensi-android-plan3-tagline"></div>
                                                 <div class="form-group"><label for="cust-sensi-android-plan3-features">Features</label><textarea id="cust-sensi-android-plan3-features" rows="4"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- OTHER PURCHASES CONTROL CONTAINER (OPTION 2) -->
+                                <div id="admin-customizer-other-container" class="hidden">
+                                    <!-- Other Sub-category Switcher (DISCORD, SPOTIFY, NETFLIX) -->
+                                    <div class="sensi-sub-switch-bar mb-3" style="display: flex; gap: 10px; margin-top: 15px;">
+                                        <button type="button" class="other-sub-toggle-btn active" data-subother="discord">
+                                            <i class="fa-brands fa-discord"></i> DISCORD (OPTION 1)
+                                        </button>
+                                        <button type="button" class="other-sub-toggle-btn" data-subother="spotify">
+                                            <i class="fa-brands fa-spotify"></i> SPOTIFY (OPTION 2)
+                                        </button>
+                                        <button type="button" class="other-sub-toggle-btn" data-subother="netflix">
+                                            <i class="fa-solid fa-film"></i> NETFLIX (OPTION 3)
+                                        </button>
+                                    </div>
+
+                                    <!-- DISCORD BLOCK -->
+                                    <div id="admin-other-discord-block">
+                                        <div class="customizer-section-block mt-3">
+                                            <h4 class="customizer-block-title"><i class="fa-brands fa-discord text-accent"></i> DISCORD NITRO Hero Banner & Metrics</h4>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-other-discord-hero-badge">Hero Badge</label><input type="text" id="cust-other-discord-hero-badge"></div>
+                                                <div class="form-group flex-1"><label for="cust-other-discord-hero-title">Hero Title HTML</label><input type="text" id="cust-other-discord-hero-title"></div>
+                                            </div>
+                                            <div class="form-group"><label for="cust-other-discord-hero-subtitle">Hero Subtitle</label><textarea id="cust-other-discord-hero-subtitle" rows="2"></textarea></div>
+                                        </div>
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-box-open text-accent"></i> DISCORD Nitro Plans Configurator</h4>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>Discord Nitro 1 Month Promo</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-other-discord-plan1-badge">Badge</label><input type="text" id="cust-other-discord-plan1-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-discord-plan1-title">Title</label><input type="text" id="cust-other-discord-plan1-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-discord-plan1-price">Price (₹)</label><input type="number" id="cust-other-discord-plan1-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-other-discord-plan1-tagline">Tagline</label><input type="text" id="cust-other-discord-plan1-tagline"></div>
+                                                <div class="form-group"><label for="cust-other-discord-plan1-features">Features (1 per line)</label><textarea id="cust-other-discord-plan1-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card" style="padding: 12px;">
+                                                <h5>Discord Nitro 3 Months Promo</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-other-discord-plan2-badge">Badge</label><input type="text" id="cust-other-discord-plan2-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-discord-plan2-title">Title</label><input type="text" id="cust-other-discord-plan2-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-discord-plan2-price">Price (₹)</label><input type="number" id="cust-other-discord-plan2-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-other-discord-plan2-tagline">Tagline</label><input type="text" id="cust-other-discord-plan2-tagline"></div>
+                                                <div class="form-group"><label for="cust-other-discord-plan2-features">Features (1 per line)</label><textarea id="cust-other-discord-plan2-features" rows="4"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- SPOTIFY BLOCK -->
+                                    <div id="admin-other-spotify-block" class="hidden">
+                                        <div class="customizer-section-block mt-3">
+                                            <h4 class="customizer-block-title"><i class="fa-brands fa-spotify text-success"></i> SPOTIFY PREMIUM Hero Banner & Metrics</h4>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-other-spotify-hero-badge">Hero Badge</label><input type="text" id="cust-other-spotify-hero-badge"></div>
+                                                <div class="form-group flex-1"><label for="cust-other-spotify-hero-title">Hero Title HTML</label><input type="text" id="cust-other-spotify-hero-title"></div>
+                                            </div>
+                                            <div class="form-group"><label for="cust-other-spotify-hero-subtitle">Hero Subtitle</label><textarea id="cust-other-spotify-hero-subtitle" rows="2"></textarea></div>
+                                        </div>
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-box-open text-success"></i> SPOTIFY Premium Plans Configurator</h4>
+                                            <div class="card glass-card inner-config-card" style="padding: 12px;">
+                                                <h5>Spotify Premium 1 Year Full Access</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-other-spotify-plan1-badge">Badge</label><input type="text" id="cust-other-spotify-plan1-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-spotify-plan1-title">Title</label><input type="text" id="cust-other-spotify-plan1-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-spotify-plan1-price">Price (₹)</label><input type="number" id="cust-other-spotify-plan1-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-other-spotify-plan1-tagline">Tagline</label><input type="text" id="cust-other-spotify-plan1-tagline"></div>
+                                                <div class="form-group"><label for="cust-other-spotify-plan1-features">Features (1 per line)</label><textarea id="cust-other-spotify-plan1-features" rows="5"></textarea></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- NETFLIX BLOCK -->
+                                    <div id="admin-other-netflix-block" class="hidden">
+                                        <div class="customizer-section-block mt-3">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-film text-danger"></i> NETFLIX PREMIUM Hero Banner & Metrics</h4>
+                                            <div class="form-row">
+                                                <div class="form-group flex-1"><label for="cust-other-netflix-hero-badge">Hero Badge</label><input type="text" id="cust-other-netflix-hero-badge"></div>
+                                                <div class="form-group flex-1"><label for="cust-other-netflix-hero-title">Hero Title HTML</label><input type="text" id="cust-other-netflix-hero-title"></div>
+                                            </div>
+                                            <div class="form-group"><label for="cust-other-netflix-hero-subtitle">Hero Subtitle</label><textarea id="cust-other-netflix-hero-subtitle" rows="2"></textarea></div>
+                                        </div>
+                                        <div class="customizer-section-block">
+                                            <h4 class="customizer-block-title"><i class="fa-solid fa-box-open text-danger"></i> NETFLIX Plans Configurator</h4>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>Netflix Plan 1 (HD 1 Month)</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan1-badge">Badge</label><input type="text" id="cust-other-netflix-plan1-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan1-title">Title</label><input type="text" id="cust-other-netflix-plan1-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan1-price">Price (₹)</label><input type="number" id="cust-other-netflix-plan1-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-other-netflix-plan1-tagline">Tagline</label><input type="text" id="cust-other-netflix-plan1-tagline"></div>
+                                                <div class="form-group"><label for="cust-other-netflix-plan1-features">Features (1 per line)</label><textarea id="cust-other-netflix-plan1-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>Netflix Plan 2 (HD 3 Months)</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan2-badge">Badge</label><input type="text" id="cust-other-netflix-plan2-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan2-title">Title</label><input type="text" id="cust-other-netflix-plan2-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan2-price">Price (₹)</label><input type="number" id="cust-other-netflix-plan2-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-other-netflix-plan2-tagline">Tagline</label><input type="text" id="cust-other-netflix-plan2-tagline"></div>
+                                                <div class="form-group"><label for="cust-other-netflix-plan2-features">Features (1 per line)</label><textarea id="cust-other-netflix-plan2-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card mb-3" style="padding: 12px;">
+                                                <h5>Netflix Plan 3 (4K 1 Month)</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan3-badge">Badge</label><input type="text" id="cust-other-netflix-plan3-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan3-title">Title</label><input type="text" id="cust-other-netflix-plan3-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan3-price">Price (₹)</label><input type="number" id="cust-other-netflix-plan3-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-other-netflix-plan3-tagline">Tagline</label><input type="text" id="cust-other-netflix-plan3-tagline"></div>
+                                                <div class="form-group"><label for="cust-other-netflix-plan3-features">Features (1 per line)</label><textarea id="cust-other-netflix-plan3-features" rows="4"></textarea></div>
+                                            </div>
+                                            <div class="card glass-card inner-config-card" style="padding: 12px;">
+                                                <h5>Netflix Plan 4 (4K 3 Months)</h5>
+                                                <div class="form-row">
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan4-badge">Badge</label><input type="text" id="cust-other-netflix-plan4-badge"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan4-title">Title</label><input type="text" id="cust-other-netflix-plan4-title"></div>
+                                                    <div class="form-group flex-1"><label for="cust-other-netflix-plan4-price">Price (₹)</label><input type="number" id="cust-other-netflix-plan4-price"></div>
+                                                </div>
+                                                <div class="form-group"><label for="cust-other-netflix-plan4-tagline">Tagline</label><input type="text" id="cust-other-netflix-plan4-tagline"></div>
+                                                <div class="form-group"><label for="cust-other-netflix-plan4-features">Features (1 per line)</label><textarea id="cust-other-netflix-plan4-features" rows="4"></textarea></div>
                                             </div>
                                         </div>
                                     </div>
