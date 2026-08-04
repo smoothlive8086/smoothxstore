@@ -2481,25 +2481,43 @@ document.addEventListener('DOMContentLoaded', () => {
     // Admin Customizer Category Toggle Switcher
     const adminToggleOptBtn = document.getElementById('admin-toggle-opt-btn');
     const adminToggleSensiBtn = document.getElementById('admin-toggle-sensi-btn');
+    const adminToggleOtherBtn = document.getElementById('admin-toggle-other-btn');
     const adminCustomizerOptContainer = document.getElementById('admin-customizer-opt-container');
     const adminCustomizerSensiContainer = document.getElementById('admin-customizer-sensi-container');
+    const adminCustomizerOtherContainer = document.getElementById('admin-customizer-other-container');
 
     if (adminToggleOptBtn && adminToggleSensiBtn) {
         adminToggleOptBtn.addEventListener('click', () => {
             activeAdminCategoryTab = 'optimization';
             adminToggleOptBtn.classList.add('active');
             adminToggleSensiBtn.classList.remove('active');
+            if (adminToggleOtherBtn) adminToggleOtherBtn.classList.remove('active');
             if (adminCustomizerOptContainer) adminCustomizerOptContainer.classList.remove('hidden');
             if (adminCustomizerSensiContainer) adminCustomizerSensiContainer.classList.add('hidden');
+            if (adminCustomizerOtherContainer) adminCustomizerOtherContainer.classList.add('hidden');
         });
 
         adminToggleSensiBtn.addEventListener('click', () => {
             activeAdminCategoryTab = 'sensi';
             adminToggleSensiBtn.classList.add('active');
             adminToggleOptBtn.classList.remove('active');
+            if (adminToggleOtherBtn) adminToggleOtherBtn.classList.remove('active');
             if (adminCustomizerSensiContainer) adminCustomizerSensiContainer.classList.remove('hidden');
             if (adminCustomizerOptContainer) adminCustomizerOptContainer.classList.add('hidden');
+            if (adminCustomizerOtherContainer) adminCustomizerOtherContainer.classList.add('hidden');
         });
+
+        if (adminToggleOtherBtn) {
+            adminToggleOtherBtn.addEventListener('click', () => {
+                activeAdminCategoryTab = 'other_purchases';
+                adminToggleOtherBtn.classList.add('active');
+                adminToggleOptBtn.classList.remove('active');
+                adminToggleSensiBtn.classList.remove('active');
+                if (adminCustomizerOtherContainer) adminCustomizerOtherContainer.classList.remove('hidden');
+                if (adminCustomizerOptContainer) adminCustomizerOptContainer.classList.add('hidden');
+                if (adminCustomizerSensiContainer) adminCustomizerSensiContainer.classList.add('hidden');
+            });
+        }
     }
 
     // SENSI Sub-Tab Switcher
@@ -2518,6 +2536,24 @@ document.addEventListener('DOMContentLoaded', () => {
             if (pcBlock) pcBlock.classList.toggle('hidden', sub !== 'pc');
             if (iosBlock) iosBlock.classList.toggle('hidden', sub !== 'ios');
             if (androidBlock) androidBlock.classList.toggle('hidden', sub !== 'android');
+        });
+    });
+
+    // OTHER PURCHASES Sub-Tab Switcher
+    document.querySelectorAll('.other-sub-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.other-sub-toggle-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const sub = btn.getAttribute('data-subother');
+
+            const discordBlock = document.getElementById('admin-other-discord-block');
+            const spotifyBlock = document.getElementById('admin-other-spotify-block');
+            const netflixBlock = document.getElementById('admin-other-netflix-block');
+
+            if (discordBlock) discordBlock.classList.toggle('hidden', sub !== 'discord');
+            if (spotifyBlock) spotifyBlock.classList.toggle('hidden', sub !== 'spotify');
+            if (netflixBlock) netflixBlock.classList.toggle('hidden', sub !== 'netflix');
         });
     });
 
@@ -2810,6 +2846,57 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        // 5. DISCORD OTHER PURCHASES Fields
+        if (settings.other_purchases && settings.other_purchases.discord) {
+            setVal('cust-other-discord-hero-badge', settings.other_purchases.discord.hero?.badge);
+            setVal('cust-other-discord-hero-title', settings.other_purchases.discord.hero?.title);
+            setVal('cust-other-discord-hero-subtitle', settings.other_purchases.discord.hero?.subtitle);
+            const discordPlans = settings.other_purchases.discord.plans || [];
+            [1, 2].forEach((idx) => {
+                const p = discordPlans[idx - 1];
+                if (p) {
+                    setVal(`cust-other-discord-plan${idx}-badge`, p.badge);
+                    setVal(`cust-other-discord-plan${idx}-title`, p.title);
+                    setVal(`cust-other-discord-plan${idx}-tagline`, p.tagline);
+                    setVal(`cust-other-discord-plan${idx}-price`, p.price);
+                    setVal(`cust-other-discord-plan${idx}-features`, Array.isArray(p.features) ? p.features.join('\n') : '');
+                }
+            });
+        }
+
+        // 6. SPOTIFY OTHER PURCHASES Fields
+        if (settings.other_purchases && settings.other_purchases.spotify) {
+            setVal('cust-other-spotify-hero-badge', settings.other_purchases.spotify.hero?.badge);
+            setVal('cust-other-spotify-hero-title', settings.other_purchases.spotify.hero?.title);
+            setVal('cust-other-spotify-hero-subtitle', settings.other_purchases.spotify.hero?.subtitle);
+            const spotifyPlans = settings.other_purchases.spotify.plans || [];
+            if (spotifyPlans[0]) {
+                setVal('cust-other-spotify-plan1-badge', spotifyPlans[0].badge);
+                setVal('cust-other-spotify-plan1-title', spotifyPlans[0].title);
+                setVal('cust-other-spotify-plan1-tagline', spotifyPlans[0].tagline);
+                setVal('cust-other-spotify-plan1-price', spotifyPlans[0].price);
+                setVal('cust-other-spotify-plan1-features', Array.isArray(spotifyPlans[0].features) ? spotifyPlans[0].features.join('\n') : '');
+            }
+        }
+
+        // 7. NETFLIX OTHER PURCHASES Fields
+        if (settings.other_purchases && settings.other_purchases.netflix) {
+            setVal('cust-other-netflix-hero-badge', settings.other_purchases.netflix.hero?.badge);
+            setVal('cust-other-netflix-hero-title', settings.other_purchases.netflix.hero?.title);
+            setVal('cust-other-netflix-hero-subtitle', settings.other_purchases.netflix.hero?.subtitle);
+            const netflixPlans = settings.other_purchases.netflix.plans || [];
+            [1, 2, 3, 4].forEach((idx) => {
+                const p = netflixPlans[idx - 1];
+                if (p) {
+                    setVal(`cust-other-netflix-plan${idx}-badge`, p.badge);
+                    setVal(`cust-other-netflix-plan${idx}-title`, p.title);
+                    setVal(`cust-other-netflix-plan${idx}-tagline`, p.tagline);
+                    setVal(`cust-other-netflix-plan${idx}-price`, p.price);
+                    setVal(`cust-other-netflix-plan${idx}-features`, Array.isArray(p.features) ? p.features.join('\n') : '');
+                }
+            });
+        }
+
         const qrPreview = document.getElementById('cust-qr-preview');
         if (qrPreview) qrPreview.src = settings.qrCode || 'qr.jpg';
     }
@@ -2978,6 +3065,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 };
             });
 
+            // DISCORD OTHER PURCHASES fields
+            const discordHeroOrig = existingSettings?.other_purchases?.discord?.hero || DEFAULT_SETTINGS.other_purchases.discord.hero;
+            const discordPlansOrig = existingSettings?.other_purchases?.discord?.plans || DEFAULT_SETTINGS.other_purchases.discord.plans;
+            const discordHeroBadge = getVal('cust-other-discord-hero-badge') || discordHeroOrig.badge;
+            const discordHeroTitle = getVal('cust-other-discord-hero-title') || discordHeroOrig.title;
+            const discordHeroSub = getVal('cust-other-discord-hero-subtitle') || discordHeroOrig.subtitle;
+
+            const updatedDiscordPlans = [1, 2].map(idx => {
+                const orig = discordPlansOrig[idx - 1] || DEFAULT_SETTINGS.other_purchases.discord.plans[idx - 1];
+                return {
+                    id: orig.id,
+                    badge: getVal(`cust-other-discord-plan${idx}-badge`) || orig.badge,
+                    title: getVal(`cust-other-discord-plan${idx}-title`) || orig.title,
+                    tagline: getVal(`cust-other-discord-plan${idx}-tagline`) || orig.tagline,
+                    price: getVal(`cust-other-discord-plan${idx}-price`) || orig.price,
+                    features: parseFeat(getVal(`cust-other-discord-plan${idx}-features`)).length > 0 ? parseFeat(getVal(`cust-other-discord-plan${idx}-features`)) : orig.features
+                };
+            });
+
+            // SPOTIFY OTHER PURCHASES fields
+            const spotifyHeroOrig = existingSettings?.other_purchases?.spotify?.hero || DEFAULT_SETTINGS.other_purchases.spotify.hero;
+            const spotifyPlansOrig = existingSettings?.other_purchases?.spotify?.plans || DEFAULT_SETTINGS.other_purchases.spotify.plans;
+            const spotifyHeroBadge = getVal('cust-other-spotify-hero-badge') || spotifyHeroOrig.badge;
+            const spotifyHeroTitle = getVal('cust-other-spotify-hero-title') || spotifyHeroOrig.title;
+            const spotifyHeroSub = getVal('cust-other-spotify-hero-subtitle') || spotifyHeroOrig.subtitle;
+
+            const updatedSpotifyPlans = [
+                {
+                    id: spotifyPlansOrig[0]?.id || DEFAULT_SETTINGS.other_purchases.spotify.plans[0].id,
+                    badge: getVal('cust-other-spotify-plan1-badge') || spotifyPlansOrig[0]?.badge || DEFAULT_SETTINGS.other_purchases.spotify.plans[0].badge,
+                    title: getVal('cust-other-spotify-plan1-title') || spotifyPlansOrig[0]?.title || DEFAULT_SETTINGS.other_purchases.spotify.plans[0].title,
+                    tagline: getVal('cust-other-spotify-plan1-tagline') || spotifyPlansOrig[0]?.tagline || DEFAULT_SETTINGS.other_purchases.spotify.plans[0].tagline,
+                    price: getVal('cust-other-spotify-plan1-price') || spotifyPlansOrig[0]?.price || DEFAULT_SETTINGS.other_purchases.spotify.plans[0].price,
+                    features: parseFeat(getVal('cust-other-spotify-plan1-features')).length > 0 ? parseFeat(getVal('cust-other-spotify-plan1-features')) : (spotifyPlansOrig[0]?.features || DEFAULT_SETTINGS.other_purchases.spotify.plans[0].features)
+                }
+            ];
+
+            // NETFLIX OTHER PURCHASES fields
+            const netflixHeroOrig = existingSettings?.other_purchases?.netflix?.hero || DEFAULT_SETTINGS.other_purchases.netflix.hero;
+            const netflixPlansOrig = existingSettings?.other_purchases?.netflix?.plans || DEFAULT_SETTINGS.other_purchases.netflix.plans;
+            const netflixHeroBadge = getVal('cust-other-netflix-hero-badge') || netflixHeroOrig.badge;
+            const netflixHeroTitle = getVal('cust-other-netflix-hero-title') || netflixHeroOrig.title;
+            const netflixHeroSub = getVal('cust-other-netflix-hero-subtitle') || netflixHeroOrig.subtitle;
+
+            const updatedNetflixPlans = [1, 2, 3, 4].map(idx => {
+                const orig = netflixPlansOrig[idx - 1] || DEFAULT_SETTINGS.other_purchases.netflix.plans[idx - 1];
+                return {
+                    id: orig.id,
+                    badge: getVal(`cust-other-netflix-plan${idx}-badge`) || orig.badge,
+                    title: getVal(`cust-other-netflix-plan${idx}-title`) || orig.title,
+                    tagline: getVal(`cust-other-netflix-plan${idx}-tagline`) || orig.tagline,
+                    price: getVal(`cust-other-netflix-plan${idx}-price`) || orig.price,
+                    features: parseFeat(getVal(`cust-other-netflix-plan${idx}-features`)).length > 0 ? parseFeat(getVal(`cust-other-netflix-plan${idx}-features`)) : orig.features
+                };
+            });
+
             const newSettings = {
                 updatedAt: Date.now(),
                 brandName: brandIn !== '' ? brandIn : (existingSettings.brandName || DEFAULT_SETTINGS.brandName),
@@ -3027,6 +3170,35 @@ document.addEventListener('DOMContentLoaded', () => {
                             subtitle: androidHeroSub
                         },
                         plans: updatedAndroidPlans
+                    }
+                },
+                other_purchases: {
+                    discord: {
+                        hero: {
+                            ...discordHeroOrig,
+                            badge: discordHeroBadge,
+                            title: discordHeroTitle,
+                            subtitle: discordHeroSub
+                        },
+                        plans: updatedDiscordPlans
+                    },
+                    spotify: {
+                        hero: {
+                            ...spotifyHeroOrig,
+                            badge: spotifyHeroBadge,
+                            title: spotifyHeroTitle,
+                            subtitle: spotifyHeroSub
+                        },
+                        plans: updatedSpotifyPlans
+                    },
+                    netflix: {
+                        hero: {
+                            ...netflixHeroOrig,
+                            badge: netflixHeroBadge,
+                            title: netflixHeroTitle,
+                            subtitle: netflixHeroSub
+                        },
+                        plans: updatedNetflixPlans
                     }
                 }
             };
