@@ -132,7 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Settings Defaults Schema for OPTIMIZATION & SENSI
     const DEFAULT_SETTINGS = {
         brandName: 'SMOOTH <span class="accent-text">X</span> STORE',
-        discordLink: 'https://discord.gg/gu5cy4Hg94',
+        discordLink: 'https://discord.gg/Z48VDN4zxc',
         upiId: 'rithwik0000@fam',
         qrCode: 'qr.jpg',
         primaryColor: '#00f2fe',
@@ -608,10 +608,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 brandName = DEFAULT_SETTINGS.brandName;
             }
 
-            return {
+            let discordLink = parsed.discordLink;
+            if (!discordLink || discordLink === 'https://discord.gg/gu5cy4Hg94') {
+                discordLink = DEFAULT_SETTINGS.discordLink;
+            }
+
+            const updatedSettings = {
                 ...DEFAULT_SETTINGS,
                 ...parsed,
                 brandName: brandName,
+                discordLink: discordLink,
                 optimization: {
                     ...DEFAULT_SETTINGS.optimization,
                     ...optObj,
@@ -659,13 +665,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 }
             };
+
+            if (parsed.discordLink === 'https://discord.gg/gu5cy4Hg94') {
+                localStorage.setItem('smooth_settings', JSON.stringify(updatedSettings));
+            }
+
+            return updatedSettings;
         } catch (e) {
             return JSON.parse(JSON.stringify(DEFAULT_SETTINGS));
         }
     };
     const setStoredSettings = (settings) => localStorage.setItem('smooth_settings', JSON.stringify(settings));
 
-    const getDiscordLink = () => getStoredSettings().discordLink || 'https://discord.gg/gu5cy4Hg94';
+    const getDiscordLink = () => getStoredSettings().discordLink || 'https://discord.gg/Z48VDN4zxc';
 
     // --- MongoDB Atlas Cloud Synchronization ---
     function updateSyncIndicator(status) {
@@ -752,6 +764,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const data = await res.json();
 
                 if (data && data.settings && typeof data.settings === 'object') {
+                    if (!data.settings.discordLink || data.settings.discordLink === 'https://discord.gg/gu5cy4Hg94') {
+                        data.settings.discordLink = DEFAULT_SETTINGS.discordLink;
+                    }
                     const localSettings = getStoredSettings();
                     const cloudTime = Number(data.settings.updatedAt) || 0;
                     const localTime = Number(localSettings.updatedAt) || 0;
@@ -1516,7 +1531,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 discordSectionHtml = `
                     <div class="discord-vip-banner">
                         <div class="discord-header-box">
-                            <a href="https://discord.gg/gu5cy4Hg94" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 12px;">
+                            <a href="${getDiscordLink()}" target="_blank" rel="noopener noreferrer" style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 12px;">
                                 <i class="fa-brands fa-discord discord-logo-icon" title="Join Discord Server"></i>
                                 <h3 class="discord-action-title">OPEN DISCORD AND CREATE TICKET</h3>
                             </a>
@@ -1524,7 +1539,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <p class="discord-instructions">
                             Your payment has been verified by the Admin! Click the button below to automatically join our official Discord server and open a ticket. Our team will start your service immediately!
                         </p>
-                        <a href="https://discord.gg/gu5cy4Hg94" target="_blank" rel="noopener noreferrer" class="btn btn-discord btn-lg pulse-glow" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 10px;">
+                        <a href="${getDiscordLink()}" target="_blank" rel="noopener noreferrer" class="btn btn-discord btn-lg pulse-glow" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; margin-top: 10px;">
                             <i class="fa-brands fa-discord"></i> Open Discord & Create Ticket
                         </a>
                     </div>
@@ -2727,8 +2742,9 @@ document.addEventListener('DOMContentLoaded', () => {
         if (custQrPreview && !customizerQRBase64) custQrPreview.src = settings.qrCode || 'qr.jpg';
 
         // 5. Update support and Discord invite anchors
-        document.querySelectorAll('a[href*="discord.gg"]').forEach(anchor => {
-            anchor.setAttribute('href', settings.discordLink || 'https://discord.gg/gu5cy4Hg94');
+        const activeDiscordLink = (settings.discordLink && settings.discordLink !== 'https://discord.gg/gu5cy4Hg94') ? settings.discordLink : 'https://discord.gg/Z48VDN4zxc';
+        document.querySelectorAll('a[href*="discord.gg"], a.discord-nav-link, a.floating-discord-btn, a.btn-discord, #nav-discord-link, #floating-discord-btn').forEach(anchor => {
+            anchor.setAttribute('href', activeDiscordLink);
         });
 
         // 6. Apply Custom Theme Colors Dynamically
@@ -3130,7 +3146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const newSettings = {
                 updatedAt: Date.now(),
                 brandName: brandIn !== '' ? brandIn : (existingSettings.brandName || DEFAULT_SETTINGS.brandName),
-                discordLink: discordIn !== '' ? discordIn : (existingSettings.discordLink || DEFAULT_SETTINGS.discordLink),
+                discordLink: (discordIn !== '' && discordIn !== 'https://discord.gg/gu5cy4Hg94') ? discordIn : ((existingSettings.discordLink && existingSettings.discordLink !== 'https://discord.gg/gu5cy4Hg94') ? existingSettings.discordLink : DEFAULT_SETTINGS.discordLink),
                 upiId: upiIn !== '' ? upiIn : (existingSettings.upiId || DEFAULT_SETTINGS.upiId),
                 primaryColor: primaryIn !== '' ? primaryIn : (existingSettings.primaryColor || DEFAULT_SETTINGS.primaryColor),
                 secondaryColor: secondaryIn !== '' ? secondaryIn : (existingSettings.secondaryColor || DEFAULT_SETTINGS.secondaryColor),
