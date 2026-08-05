@@ -1276,32 +1276,14 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Direct Admin Login Verification
-        if ((em === 'admin' || em === 'smooth' || em.startsWith('admin@') || em === 'keyauth') && (pw === 'smooth8086' || pw === 'admin8086' || pw === 'admin' || pw === '1')) {
-            const adminUser = {
-                email: em.includes('@') ? em : `admin@smoothstore.com`,
-                isAdmin: true,
-                keyAuthUser: em,
-                authenticatedAt: new Date().toISOString()
-            };
-            setCurrentUser(adminUser);
-            isAdminLoggedIn = true;
-            recordLoginEvent(adminUser.email, 'Super Admin', 'Success');
-            if (formElement) formElement.reset();
-            closeModal(authModal);
-            updateAuthUI();
-            showToast(`Admin Authenticated! Executive Admin Panel Unlocked.`, 'success');
-            return;
-        }
-
         const users = getStoredUsers();
         const foundUser = users.find(u => u.email.toLowerCase() === em && u.password === pw);
 
         if (foundUser) {
-            const isUserAdmin = foundUser.isAdmin === true;
-            const userObj = { email: foundUser.email, isAdmin: isUserAdmin };
+            // Customer sign-in strictly logs in as customer (isAdmin: false)
+            const userObj = { email: foundUser.email, isAdmin: false };
             setCurrentUser(userObj);
-            recordLoginEvent(foundUser.email, isUserAdmin ? 'Super Admin' : 'Customer', 'Success');
+            recordLoginEvent(foundUser.email, 'Customer', 'Success');
             if (formElement) formElement.reset();
             closeModal(authModal);
             updateAuthUI();
